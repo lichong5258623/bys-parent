@@ -1,0 +1,22 @@
+# Eclipse
+.classpath
+.project
+.externalToolBuilders/
+.metadata
+.settings
+# Maven
+target/
+release.properties
+ # Android generated
+bin/
+gen/
+classes/
+gen-external-apklibs/
+# Ant
+local.properties
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
