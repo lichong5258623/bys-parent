@@ -1,8 +1,12 @@
 package com.chong.bys.util;
 
+import com.chong.bys.domain.pojo.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.async.DeferredResult;
+
+import java.util.List;
 
 /**
  * 封装redisTemplate,简化操作

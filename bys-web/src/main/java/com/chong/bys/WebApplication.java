@@ -5,6 +5,7 @@ import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * @since 1.0
  */
 @Slf4j
+@EnableAsync //开启异步支持
 @EnableCaching //开启缓存注解模式
 @EnableRedisHttpSession //开启redisSession
 @EnableRabbit //开启rabbitmq注解模式
@@ -21,6 +23,6 @@ public class WebApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebApplication.class, args);
-		log.info("bysApplication is success!");
+		log.info("bysApplication is success!项目启动成功");
 	}
 }

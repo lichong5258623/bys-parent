@@ -1,6 +1,8 @@
 package com.chong.bys.controller;
 
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.chong.bys.base.Result;
 import com.chong.bys.domain.pojo.SysUser;
 import com.chong.bys.service.SysUserService;
@@ -35,6 +37,10 @@ public class SysUserController extends BaseController {
 
         Result<List<SysUser>> success = Result.success(sysUserService.selectList(null));
 //        int i = 2/0;
+        SysUser sysUser = new SysUser();
+        EntityWrapper<SysUser> sysUserEntityWrapper = new EntityWrapper<>();
+        Page<SysUser> sysUserPage1 = new Page<SysUser>(1,10);
+        Page<SysUser> sysUserPage = sysUserService.selectPage(sysUserPage1);
         return success;
     }
 

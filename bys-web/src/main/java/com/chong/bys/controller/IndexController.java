@@ -21,7 +21,7 @@ import com.chong.bys.service.SysUserService;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author <a href="mailto:lichong@zjport.gov.cn">lichong</a>
+ * @author lichong
  * @version 1
  * @date 2018/8/15 21:30
  * @since 1.0
@@ -41,6 +41,11 @@ public class IndexController {
         return "index";
     }
 
+    /**
+     * 异常测试，传入id为2报异常
+     * @param id
+     * @return
+     */
     @GetMapping("/login")
     @ResponseBody
     public SysUser getSysUser(Long id){

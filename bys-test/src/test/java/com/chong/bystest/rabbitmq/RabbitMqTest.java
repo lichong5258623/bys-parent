@@ -1,4 +1,4 @@
-package com.chong.bys.rabbitmq;
+package com.chong.bystest.rabbitmq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.HashMap;
 
 /**
- * rabbitmq测试demo
+ * rabbitmq测试demo 向rabbitmq 发送数据
  */
 @Slf4j
 @RunWith(SpringRunner.class)

@@ -23,9 +23,9 @@ public class MybatisPlusConfig {
     }
 
     /**
-     * SQL执行效率插件
+     * SQL执行效率插件,生产环境关闭
      */
-    @Bean
+//    @Bean
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
     }

@@ -35,7 +35,7 @@ public class RedisConfig {
 			RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
 		RedisTemplate<String, Object> template = new RedisTemplate<>();
 		template.setConnectionFactory(redisConnectionFactory);
-		template.setDefaultSerializer(new GenericFastJsonRedisSerializer());
+//		template.setDefaultSerializer(new GenericFastJsonRedisSerializer());
 		return template;
 	}
 

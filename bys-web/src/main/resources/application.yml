@@ -95,6 +95,7 @@ mybatis-plus:
     #配置JdbcTypeForNull, oracle数据库必须配置
     #jdbc-type-for-null: 'null'
 
+
   #自定义redis 单位秒
 redis:
   host: 60.205.206.199
