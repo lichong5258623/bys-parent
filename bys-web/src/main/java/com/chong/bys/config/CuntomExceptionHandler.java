@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author lichong
  */
 @Slf4j
-@ControllerAdvice
+//@ControllerAdvice
 public class CuntomExceptionHandler extends BaseController {
 
 

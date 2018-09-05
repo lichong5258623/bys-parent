@@ -1,9 +1,10 @@
 server:
-  port: 8082
+  port: 8090
 
 spring:
   application:
     name: mail
+
   mail:
     host: smtp.qq.com
     username: 578267200@qq.com
@@ -41,23 +42,26 @@ spring:
       #打开PSCache，对于有游标的数据库提升巨大并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
      # pool-prepared-statements: true
      # max-pool-prepared-statement-per-connection-size: 20
-
   redis:
     host: 60.205.206.199
     port: 6379
     password: 123456
-
   session:
     store-type: redis
-
   thymeleaf:
     cache: false
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
   rabbitmq:
     host: 192.168.56.101
     username: guest
     password: guest
+  http:
+    encoding:
+      charset: utf-8 #默认就是utf-8
+
 #mybatis
 mybatis-plus:
   mapper-locations: classpath:/mapping/*Mapper.xml

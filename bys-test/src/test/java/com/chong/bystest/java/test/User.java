@@ -3,6 +3,8 @@
  */
 package com.chong.bystest.java.test;
 
+import java.util.Date;
+
 /**
  * @author newli
  * @ClassName: User 
@@ -17,6 +19,8 @@ public class User {
 	private String name;
 	
 	private String address;
+
+	private Date creatTime;
 
 	public String getId() {
 		return id;
@@ -41,5 +45,12 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+	public Date getCreatTime() {
+		return creatTime;
+	}
+
+	public void setCreatTime(Date creatTime) {
+		this.creatTime = creatTime;
+	}
 }

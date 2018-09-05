@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/web/pom.xml" />
         <option value="$PROJECT_DIR$/bys-web/pom.xml" />
+        <option value="$PROJECT_DIR$/bys-test/pom.xml" />
       </list>
     </option>
   </component>

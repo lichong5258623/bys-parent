@@ -16,6 +16,7 @@ public class CustomErrorAttrbutes extends DefaultErrorAttributes {
         /**
          * 在此可以添加自定义返回的错误属性
          */
+        errorAttributes.put("author", "李崇");
         return errorAttributes;
     }
 }

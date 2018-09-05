@@ -32,6 +32,7 @@ public class RabbitMqTest {
         map.put("age","23");
         map.put("said","明天会更好");
         rabbitTemplate.convertAndSend("exchange.direct","lichong.news",map);
+
     }
 
 

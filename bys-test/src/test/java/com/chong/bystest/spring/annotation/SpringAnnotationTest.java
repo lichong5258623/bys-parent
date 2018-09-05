@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.context.ContextLoaderListener;
 
 import java.util.Map;
 
@@ -14,7 +15,6 @@ public class SpringAnnotationTest {
 
     @Test
     public void test1(){
-
 
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguratioin.class);
         Employee name = (Employee) applicationContext.getBean("employee");
