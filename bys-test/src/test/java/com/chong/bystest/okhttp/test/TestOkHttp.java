@@ -38,7 +38,7 @@ public class TestOkHttp {
         OkHttpClient okHttpClient = new OkHttpClient();
 
         // 请求地址
-        String url = "http://localhost:8888/smartYJ/interface/wxuser/getWxUserById?id=17122714184508700";
+        String url = "http://localhost:8090/login?id=304";
 
         // 构造请求
         Request request = new Request.Builder().url(url).build();

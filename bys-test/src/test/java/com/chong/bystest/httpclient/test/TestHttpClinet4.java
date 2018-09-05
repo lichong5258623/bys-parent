@@ -19,7 +19,7 @@ public class TestHttpClinet4 {
 	public void test1() {
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		HttpGet httpGet = new HttpGet("http://localhost:8080/user/list");
+		HttpGet httpGet = new HttpGet("http://localhost:8090/login?id=304");
 		try {
 			CloseableHttpResponse response  = httpClient.execute(httpGet);
 			HttpEntity entity = response.getEntity();

@@ -25,7 +25,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //                .failureForwardUrl()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/loginType","/loginPage","/index").permitAll()
+                .antMatchers("/staticPages/**","/loginType","/loginPage","/index").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
