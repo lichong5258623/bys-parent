@@ -3,12 +3,14 @@ package com.chong.bys.controller;
 import com.chong.bys.exception.NoLoginException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chong.bys.domain.pojo.SysUser;
@@ -43,8 +45,15 @@ public class IndexController extends BaseController {
         return "index";
     }
 
-    @GetMapping("/loginType")
+    @RequestMapping("/loginPage.html")
     public String loginType(HttpServletRequest request, HttpServletResponse response){
+        //判断是否携带错误信息
+        if(request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION)!=null){
+
+            log.info("错误信息：{}",request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION));
+            request.setAttribute("error", request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION));
+            return "loginPage";
+        }
         SavedRequest savedRequest = requestCache.getRequest(request, response);
         String accept = request.getHeader("accept");
         log.info("请求头返回类型：{}", accept);
@@ -55,7 +64,7 @@ public class IndexController extends BaseController {
                 throw new NoLoginException("用户未登录，请引导用户登录");
             }
         }
-        return redirect("/staticPages/loginPage.html");
+        return "loginPage";
     }
 
 
@@ -71,6 +80,7 @@ public class IndexController extends BaseController {
         if (id == 2) {
             int i = 2 / 0;
         }
+
         return sysUserService.selectById(id);
     }
 
