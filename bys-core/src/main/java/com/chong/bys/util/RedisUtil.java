@@ -1,18 +1,17 @@
 package com.chong.bys.util;
 
-import com.chong.bys.domain.pojo.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.async.DeferredResult;
-
-import java.util.List;
 
 /**
  * 封装redisTemplate,简化操作
  */
 @Component
 public class RedisUtil {
+
+    @Autowired
+    JsonUtil jsonUtil;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -24,15 +23,15 @@ public class RedisUtil {
 
     public void setObject(String key, Object object) {
 
-        stringRedisTemplate.opsForValue().set(key, JsonUtil.BeanToJson(object));
+        stringRedisTemplate.opsForValue().set(key, jsonUtil.BeanToJson(object));
     }
 
-    public String getString(String key){
+    public String getString(String key) {
         return stringRedisTemplate.opsForValue().get(key);
     }
 
-    public <T> T getObjet(String key,Class<T> clazz){
-        return JsonUtil.JsonToBean(stringRedisTemplate.opsForValue().get(key),clazz);
+    public <T> T getObjet(String key, Class<T> clazz) {
+        return jsonUtil.JsonToBean(stringRedisTemplate.opsForValue().get(key), clazz);
     }
 
 }

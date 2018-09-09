@@ -1,8 +1,12 @@
 package com.chong.bys.controller;
 
+import com.chong.bys.domain.vo.BysUserVo;
 import com.chong.bys.exception.NoLoginException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
@@ -20,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Collection;
 
 /**
  * @author lichong
@@ -80,7 +85,14 @@ public class IndexController extends BaseController {
         if (id == 2) {
             int i = 2 / 0;
         }
+        Authentication currentUser = SecurityContextHolder.getContext()
+                .getAuthentication();
+        boolean authenticated = currentUser.isAuthenticated();
+        Collection<? extends GrantedAuthority> authorities = currentUser.getAuthorities();
+        long testauthoritie = authorities.stream().filter(s -> ((GrantedAuthority) s).getAuthority().equals("testauthoritie")).count();
 
+        BysUserVo principal = (BysUserVo)currentUser.getPrincipal();
+        log.info("登陆成功对象信息：{}",principal);
         return sysUserService.selectById(id);
     }
 

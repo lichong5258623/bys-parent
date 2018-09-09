@@ -12,6 +12,10 @@ import redis.clients.jedis.JedisPool;
 @Service
 public class RedisService {
 
+
+    @Autowired
+    JsonUtil jsonUtil;
+
     @Autowired
     private JedisPool jedisPool;
 
@@ -31,7 +35,7 @@ public class RedisService {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            String code = jedis.set(key, JsonUtil.BeanToJson(value));
+            String code = jedis.set(key, jsonUtil.BeanToJson(value));
             log.info(code);
             if ("OK".equals(code)) {
 
@@ -57,7 +61,7 @@ public class RedisService {
         try {
             jedis = jedisPool.getResource();
             String s = jedis.get(key);
-            return JsonUtil.JsonToBean(s, clazz);
+            return jsonUtil.JsonToBean(s, clazz);
         } finally {
             returnToPool(jedis);
         }

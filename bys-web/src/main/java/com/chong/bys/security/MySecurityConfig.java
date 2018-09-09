@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @author lichong
@@ -20,16 +21,20 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    AuthenticationFailureHandler imoocAuthenctiationFailureHandler;
+    AuthenticationFailureHandler bysAuthenctiationFailureHandler;
+
+
+    @Autowired
+    AuthenticationSuccessHandler bysAuthenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
         http.formLogin()
                 .loginPage("/loginPage.html")
                 .loginProcessingUrl("/authentication/form")
 //                .failureForwardUrl("/failureLoginPage") //若设置失败则自定义失败处理器不生效，已测试
-                .failureHandler(imoocAuthenctiationFailureHandler)
+                .failureHandler(bysAuthenctiationFailureHandler)
+                .successHandler(bysAuthenticationSuccessHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/staticPages/**","/error","/loginPage.html","/index").permitAll()

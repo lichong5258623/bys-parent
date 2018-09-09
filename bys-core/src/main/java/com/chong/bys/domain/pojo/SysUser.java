@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
-import org.springframework.security.core.userdetails.User;
-
 import java.io.Serializable;
 
 /**
@@ -16,31 +14,34 @@ import java.io.Serializable;
  * </p>
  *
  * @author lichong
- * @since 2018-08-16
+ * @since 2018-09-09
  */
 @TableName("t_sys_user")
 public class SysUser extends Model<SysUser> {
 
     private static final long serialVersionUID = 1L;
+
     /**
      * 主键
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     /**
-     * 用户名
+     * 用户姓名
      */
-    @TableField("user_name")
-    private String userName;
+    private String name;
     /**
-     * 登录名
+     * 账户登录名
      */
-    @TableField("login_name")
-    private String loginName;
+    private String username;
     /**
      * 密码
      */
     private String password;
+    /**
+     * 手机号
+     */
+    private String phone;
     /**
      * 邮箱
      */
@@ -60,6 +61,25 @@ public class SysUser extends Model<SysUser> {
      */
     @TableField("last_login_time")
     private Date lastLoginTime;
+    /**
+     * 0：账号已过期 1：账号未过期
+     */
+    @TableField("account_non_expired")
+    private Integer accountNonExpired;
+    /**
+     * 0：账户已锁定 1：账户未锁定
+     */
+    @TableField("account_non_locked")
+    private Integer accountNonLocked;
+    /**
+     * 0：凭证已过期 1：凭证未过期
+     */
+    @TableField("credentials_non_expired")
+    private Integer credentialsNonExpired;
+    /**
+     * 0：账户未启用 1：账户已启用
+     */
+    private Integer enable;
 
 
     public Long getId() {
@@ -70,20 +90,20 @@ public class SysUser extends Model<SysUser> {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -92,6 +112,14 @@ public class SysUser extends Model<SysUser> {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -126,6 +154,38 @@ public class SysUser extends Model<SysUser> {
         this.lastLoginTime = lastLoginTime;
     }
 
+    public Integer getAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(Integer accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public Integer getAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(Integer accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public Integer getCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(Integer credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public Integer getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Integer enable) {
+        this.enable = enable;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.id;
@@ -135,13 +195,18 @@ public class SysUser extends Model<SysUser> {
     public String toString() {
         return "SysUser{" +
         ", id=" + id +
-        ", userName=" + userName +
-        ", loginName=" + loginName +
+        ", name=" + name +
+        ", username=" + username +
         ", password=" + password +
+        ", phone=" + phone +
         ", email=" + email +
         ", headImage=" + headImage +
         ", createTime=" + createTime +
         ", lastLoginTime=" + lastLoginTime +
+        ", accountNonExpired=" + accountNonExpired +
+        ", accountNonLocked=" + accountNonLocked +
+        ", credentialsNonExpired=" + credentialsNonExpired +
+        ", enable=" + enable +
         "}";
     }
 }

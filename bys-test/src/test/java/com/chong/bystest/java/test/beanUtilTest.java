@@ -2,13 +2,17 @@ package com.chong.bystest.java.test;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson.JSON;
+import com.chong.bys.domain.pojo.SysUser;
+import com.chong.bys.domain.vo.BysUserVo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -107,6 +111,24 @@ public class beanUtilTest {
 
         log.info("结果：{}", collect.get(23));
         log.info("结果：{},{}", collect1.get(11111).getCreatTime(),collect1.size());
+    }
+
+
+    @Test
+    public void test05() throws InvocationTargetException, IllegalAccessException {
+
+        SysUser sysUser = new SysUser();
+        BysUserVo bysUserVo = new BysUserVo();
+
+        bysUserVo.setCredentialsNonExpired(true);
+        long l = System.currentTimeMillis();
+
+        BeanUtils.copyProperties( bysUserVo,sysUser);
+
+        long l1 = System.currentTimeMillis();
+        log.info("时间：{}",l1-l);
+        log.info("sysUser:{}",sysUser);
+
     }
 
 
