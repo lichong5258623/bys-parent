@@ -13,7 +13,7 @@ import org.junit.Test;
 /**
  * @author newli
  * @ClassName: TimeTest
- * @Description: TODO(这里用一句话描述这个类的作用)
+ * @Description:
  * @date 2018年1月16日 上午10:05:56
  */
 public class TimeTest {

@@ -1,5 +1,8 @@
 server:
   port: 8090
+  servlet:
+    context-path: /bys
+
 
 spring:
   application:
@@ -50,6 +53,7 @@ spring:
     store-type: redis
   thymeleaf:
     cache: false
+    encoding: utf-8
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

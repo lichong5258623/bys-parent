@@ -4,6 +4,7 @@ import com.chong.bys.domain.vo.BysUserVo;
 import com.chong.bys.exception.NoLoginException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chong.bys.domain.pojo.SysUser;
 import com.chong.bys.service.SysUserService;
+import org.thymeleaf.context.WebContext;
+import org.thymeleaf.spring5.ISpringTemplateEngine;
+import org.thymeleaf.spring5.context.webflux.SpringWebFluxContext;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,10 +39,17 @@ import java.util.Collection;
  */
 @Slf4j
 @Controller
-public class IndexController extends BaseController {
+public class TestController extends BaseController {
 
     @Autowired
     SysUserService sysUserService;
+
+    @Autowired
+    ThymeleafViewResolver thymeleafViewResolver;
+
+    @Autowired
+    ApplicationContext applicationContext;
+
 
     private RequestCache requestCache = new HttpSessionRequestCache();
 
@@ -51,11 +63,11 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping("/loginPage.html")
-    public String loginType(HttpServletRequest request, HttpServletResponse response){
+    public String loginType(HttpServletRequest request, HttpServletResponse response) {
         //判断是否携带错误信息
-        if(request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION)!=null){
+        if (request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION) != null) {
 
-            log.info("错误信息：{}",request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION));
+            log.info("错误信息：{}", request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION));
             request.setAttribute("error", request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION));
             return "loginPage";
         }
@@ -91,8 +103,8 @@ public class IndexController extends BaseController {
         Collection<? extends GrantedAuthority> authorities = currentUser.getAuthorities();
         long testauthoritie = authorities.stream().filter(s -> ((GrantedAuthority) s).getAuthority().equals("testauthoritie")).count();
 
-        BysUserVo principal = (BysUserVo)currentUser.getPrincipal();
-        log.info("登陆成功对象信息：{}",principal);
+        BysUserVo principal = (BysUserVo) currentUser.getPrincipal();
+        log.info("登陆成功对象信息：{}", principal);
         return sysUserService.selectById(id);
     }
 
@@ -103,5 +115,26 @@ public class IndexController extends BaseController {
 
         return session.getId();
     }
+
+
+    /**
+     * 测试手动解析thymeleaf模板为html，方便缓存整个页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/testProceTemplate", produces = "text/html")
+    @ResponseBody
+    public String testProceTemplate(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        String html;
+
+        model.addAttribute("name", "李崇");
+        model.addAttribute("hello", "你好，手动解析html成功");
+        WebContext webContext = new WebContext(request, response, request.getServletContext(), request.getLocale(), model.asMap());
+        ISpringTemplateEngine templateEngine = thymeleafViewResolver.getTemplateEngine();
+        html = templateEngine.process("/index", webContext);
+        return html;
+    }
+
 
 }

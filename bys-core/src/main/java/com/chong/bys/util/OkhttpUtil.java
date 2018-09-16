@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * @author lichong
  * @ClassName: OkhttpUtil
- * @Description: TODO(okhttp工具类)
+ * @Description: okhttp工具类
  * @date 2018年1月15日 下午5:09:40
  */
 @Slf4j
