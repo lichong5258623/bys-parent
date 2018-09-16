@@ -21,13 +21,8 @@
         <module>bys-dao</module>
         <module>bys-service</module>
         <module>bys-generator</module>
+        <module>bys-dubbo-remote-api</module>
+        <module>bys-dubbo-remote-consumer</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

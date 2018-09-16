@@ -1,12 +1,9 @@
 package com.chong.bys.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -17,7 +14,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  * @since 1.0
  */
 @Configuration
-public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
@@ -43,15 +40,4 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
     }
-
-
-    /**
-     * springsecurity默认提供的加密类，此加密每次加密后的密码都不一样，但是可以正确匹配密码，建议使用
-     * @return
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
 }
