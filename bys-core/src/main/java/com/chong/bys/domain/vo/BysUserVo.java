@@ -29,7 +29,7 @@ public class BysUserVo implements UserDetails, CredentialsContainer {
     private String email;
 
     private String headImage;
-
+    
     private Date createTime;
 
     private Date lastLoginTime;

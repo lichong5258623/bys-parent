@@ -128,6 +128,21 @@ public class beanUtilTest {
         long l1 = System.currentTimeMillis();
         log.info("时间：{}",l1-l);
         log.info("sysUser:{}",sysUser);
+    }
+
+    @Test
+    public void testConvert(){
+
+
+        User user = new User();
+        user.setId("111");
+
+        User2 user2 = new User2();
+
+        BeanUtils.copyProperties(user, user2);
+
+        log.info("id：{}",user2.getId());
+
 
     }
 

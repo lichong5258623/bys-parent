@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author lichong
@@ -18,6 +19,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableCaching //开启缓存注解模式
 @EnableRedisHttpSession //开启redisSession
 @EnableRabbit //开启rabbitmq注解模式
+@EnableSwagger2
 @SpringBootApplication
 public class WebApplication {
 

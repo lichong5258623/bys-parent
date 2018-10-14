@@ -15,6 +15,7 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -62,7 +63,7 @@ public class TestController extends BaseController {
         return "index";
     }
 
-    @RequestMapping("/loginPage.html")
+    @GetMapping("/loginPage.html")
     public String loginType(HttpServletRequest request, HttpServletResponse response) {
         //判断是否携带错误信息
         if (request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION) != null) {
@@ -111,9 +112,9 @@ public class TestController extends BaseController {
 
     @GetMapping("/getSessionId")
     @ResponseBody
-    public String getSessionId(HttpSession session) {
+    public String getLoginSessionId(HttpServletRequest request) {
 
-        return session.getId();
+        return request.getSession().getId();
     }
 
 
@@ -122,7 +123,7 @@ public class TestController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/testProceTemplate", produces = "text/html")
+    @GetMapping(value = "/testProceTemplate", produces = "text/html")
     @ResponseBody
     public String testProceTemplate(HttpServletRequest request, HttpServletResponse response, Model model) {
 
@@ -134,6 +135,12 @@ public class TestController extends BaseController {
         ISpringTemplateEngine templateEngine = thymeleafViewResolver.getTemplateEngine();
         html = templateEngine.process("/index", webContext);
         return html;
+    }
+
+    @PostMapping("/testtimeReceive")
+    public BysUserVo testtimeReceive(BysUserVo bysUserVo){
+
+        return bysUserVo;
     }
 
 

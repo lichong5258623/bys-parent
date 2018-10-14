@@ -1,4 +1,4 @@
-package com.chong.bystest.netty;
+package com.chong.bystest.netty.example;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

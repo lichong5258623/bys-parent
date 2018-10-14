@@ -1,30 +1,21 @@
-package com.chong.bystest.netty;
+package com.chong.bystest.netty.example;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-
 import java.util.Date;
 
 /**
  * @author lichong
  * @version 1
- * @date 2018/8/26 12:05
+ * 2018/8/26 12:05
  * @since 1.0
  */
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 
-    /**
-     * Calls {@link ChannelHandlerContext#fireChannelRead(Object)} to forward
-     * to the next {@link ChannelInboundHandler} in the {@link ChannelPipeline}.
-     * <p>
-     * Sub-classes may override this method to change behavior.
-     *
-     * @param ctx
-     * @param msg
-     */
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf m = (ByteBuf) msg; // (1)
@@ -37,15 +28,6 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-
-    /**
-     * Calls {@link ChannelHandlerContext#fireChannelActive()} to forward
-     * to the next {@link ChannelInboundHandler} in the {@link ChannelPipeline}.
-     * <p>
-     * Sub-classes may override this method to change behavior.
-     *
-     * @param ctx
-     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
 //        super.channelActive(ctx);
@@ -62,15 +44,7 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
         }); // (4)
     }
 
-    /**
-     * Calls {@link ChannelHandlerContext#fireExceptionCaught(Throwable)} to forward
-     * to the next {@link ChannelHandler} in the {@link ChannelPipeline}.
-     * <p>
-     * Sub-classes may override this method to change behavior.
-     *
-     * @param ctx
-     * @param cause
-     */
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
