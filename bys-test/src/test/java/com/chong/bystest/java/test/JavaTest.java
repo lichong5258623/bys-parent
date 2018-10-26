@@ -66,7 +66,6 @@ public class JavaTest {
         Map<String, User> map = new HashMap<>();
 
         User user = new User();
-        user.setId("1");
         user.setName("11");
         user.setAddress("111");
         map.put("111", user);

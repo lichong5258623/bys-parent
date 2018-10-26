@@ -3,17 +3,22 @@
  */
 package com.chong.bystest.poi.test;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 /**
  * @author newli
  *
  */
+@Slf4j
 public class TestWordRead {
-
-	Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Test
 	public void test() throws Exception {
@@ -50,18 +55,22 @@ public class TestWordRead {
 //			}
 //		}
 	}
-	
+
+
 	@Test
-	public void test3(){
-		
-		java.util.logging.Logger logger2 = java.util.logging.Logger.getLogger("aaaa");
-		logger2.warning("aaaa");
+	public void createExcelTest() throws Exception {
+		HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
+		hssfWorkbook.createSheet("偏远地区");
+		hssfWorkbook.createSheet("一般偏远地区");
+		hssfWorkbook.createSheet("超偏远地区");
+		File file = new File("test01.xls");
+
+		OutputStream fileOutputStream = new FileOutputStream(file);
+		hssfWorkbook.write(fileOutputStream);
 	}
-	
-	
 	@Test
-	public void test4(){
-		logger.info("bbbb");
+	public void readExcelTest() throws Exception {
+		Workbook workbook = WorkbookFactory.create(new File("test01.xls"));
 	}
 
 }

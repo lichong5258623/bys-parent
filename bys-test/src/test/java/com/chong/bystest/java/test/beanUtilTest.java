@@ -1,7 +1,6 @@
 package com.chong.bystest.java.test;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.alibaba.fastjson.JSON;
 import com.chong.bys.domain.pojo.SysUser;
 import com.chong.bys.domain.vo.BysUserVo;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -34,7 +33,6 @@ public class beanUtilTest {
     public void before(){
         for (int i = 0; i < 3000000; i++) {
             User user = new User();
-            user.setId("id:" + i);
             user.setAddress("阿萨德发生地方" + i);
             user.setName("啊啊啊" + i);
             users.add(user);
@@ -131,20 +129,19 @@ public class beanUtilTest {
     }
 
     @Test
-    public void testConvert(){
+    public void testConvert() throws InvocationTargetException, IllegalAccessException {
 
 
         User user = new User();
-        user.setId("111");
+        user.setId(111L);
 
         User2 user2 = new User2();
 
         BeanUtils.copyProperties(user, user2);
 
+        org.apache.commons.beanutils.BeanUtils.copyProperties(user2, user);
+
         log.info("id：{}",user2.getId());
-
-
     }
-
 
 }

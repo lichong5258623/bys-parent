@@ -14,7 +14,7 @@ import java.util.Date;
 public class User {
 	
 	
-	private String id;
+	private Long id;
 	
 	private String name;
 	
@@ -22,11 +22,11 @@ public class User {
 
 	private Date creatTime;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
