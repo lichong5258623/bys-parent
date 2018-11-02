@@ -1,7 +1,5 @@
 package com.chong.bys.mybatisplus;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.chong.bys.domain.pojo.SysUser;
 import com.chong.bys.domain.vo.BysUserVo;
 import com.chong.bys.service.MyUserDetailsService;
@@ -42,32 +40,26 @@ public class MybatsPlusTest {
     public void test01() {
 
         ArrayList<SysUser> sysUsers = new ArrayList<>(1000);
-
+        String encode = passwordEncoder.encode("123456");
         for (int i = 0; i < 1000; i++) {
             SysUser sysUser = new SysUser();
             sysUser.setCreateTime(new Date());
             sysUser.setLastLoginTime(new Date());
             sysUser.setHeadImage("image" + i);
-            sysUser.setEmail(i + "banch@lichiong.com");
+            sysUser.setEmail(i + "banch@lichong.com");
             sysUser.setUsername("lichong0" + i);
-            sysUser.setPassword("lichong0" + i);
-            sysUser.setName("licihong0" + i);
+            sysUser.setPassword(encode);
+            sysUser.setName("lichong" + i);
             sysUser.setPhone("1111111"+i);
             sysUsers.add(sysUser);
         }
         long startTime = System.currentTimeMillis();
-        sysUserService.insertBatch(sysUsers);
+        sysUserService.saveBatch(sysUsers);
         long endtime = System.currentTimeMillis();
         log.info("执行时间：{}", endtime - startTime);
     }
 
-    @Test
-    public void test02() {
 
-        Page<SysUser> sysUserPage = new Page<>(1,10);
-        EntityWrapper<SysUser> sysUserEntityWrapper = new EntityWrapper<>();
-        Page<SysUser> sysUserPage1 = sysUserService.selectPage(sysUserPage);
-    }
 
     @Test
     public void  test03(){

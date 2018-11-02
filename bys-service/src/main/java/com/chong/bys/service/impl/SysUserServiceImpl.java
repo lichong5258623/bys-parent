@@ -1,9 +1,9 @@
 package com.chong.bys.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chong.bys.domain.pojo.SysUser;
 import com.chong.bys.dao.SysUserMapper;
 import com.chong.bys.service.SysUserService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

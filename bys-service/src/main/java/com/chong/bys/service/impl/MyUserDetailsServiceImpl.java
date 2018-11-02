@@ -1,6 +1,6 @@
 package com.chong.bys.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chong.bys.domain.pojo.SysAuthoritie;
 import com.chong.bys.domain.pojo.SysUser;
 import com.chong.bys.domain.vo.BysUserVo;
@@ -18,10 +18,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author lichong
@@ -46,9 +44,9 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("用户名" + username);
-        EntityWrapper<SysUser> sysUserEntityWrapper = new EntityWrapper<>();
+        QueryWrapper<SysUser> sysUserEntityWrapper = new QueryWrapper<>();
         sysUserEntityWrapper.eq("username", username);
-        SysUser sysUser = sysUserService.selectOne(sysUserEntityWrapper);
+        SysUser sysUser = sysUserService.getOne(sysUserEntityWrapper);
         if (sysUser == null) {
             throw new UsernameNotFoundException("你输入的密码和账户名不匹配");
         }
@@ -76,7 +74,7 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
         sysUser.setCredentialsNonExpired(1);
         log.info("密码长度：{}", passwordEncoder.encode(password).length());
 
-        return sysUserService.insert(sysUser);
+        return sysUserService.save(sysUser);
     }
 
     /**

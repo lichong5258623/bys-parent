@@ -1,9 +1,9 @@
 package com.chong.bys.service.impl;
 
-import com.chong.bys.domain.pojo.SysUserRole;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chong.bys.dao.SysUserRoleMapper;
+import com.chong.bys.domain.pojo.SysUserRole;
 import com.chong.bys.service.SysUserRoleService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

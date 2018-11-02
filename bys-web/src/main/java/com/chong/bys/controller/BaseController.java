@@ -122,4 +122,5 @@ public class BaseController  extends WebUtils {
         headers.setContentDispositionFormData("attachment", fileName);
         return new ResponseEntity<Resource>(resource, headers, status);
     }
+
 }

@@ -1,7 +1,9 @@
 package com.chong.bys.controller;
 
+import com.chong.bys.domain.pojo.SysUser;
 import com.chong.bys.domain.vo.BysUserVo;
-import com.chong.bys.exception.NoLoginException;
+import com.chong.bys.exception.BysException;
+import com.chong.bys.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -16,20 +18,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.chong.bys.domain.pojo.SysUser;
-import com.chong.bys.service.SysUserService;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
-import org.thymeleaf.spring5.context.webflux.SpringWebFluxContext;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -79,7 +74,7 @@ public class TestController extends BaseController {
             String targetUrl = savedRequest.getRedirectUrl();
             log.info("引发跳转的请求是:" + targetUrl);
             if (accept == null || !accept.contains("text/html")) {
-                throw new NoLoginException("用户未登录，请引导用户登录");
+                throw new BysException("用户未登录，请引导用户登录");
             }
         }
         return "loginPage";
@@ -106,7 +101,7 @@ public class TestController extends BaseController {
 
         BysUserVo principal = (BysUserVo) currentUser.getPrincipal();
         log.info("登陆成功对象信息：{}", principal);
-        return sysUserService.selectById(id);
+        return sysUserService.getById(id);
     }
 
 
@@ -142,6 +137,4 @@ public class TestController extends BaseController {
 
         return bysUserVo;
     }
-
-
 }

@@ -1,12 +1,21 @@
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
-import com.baomidou.mybatisplus.generator.config.rules.DbType;
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * <p>
@@ -16,7 +25,7 @@ import java.util.List;
  * @author hubin
  * @date 2016-12-01
  */
-public class MysqlGenerator {
+public class MysqlGenerator2 {
 
     /**
      * <p>
@@ -25,11 +34,13 @@ public class MysqlGenerator {
      */
     public static void main(String[] args) {
         /* 获取 JDBC 配置文件 */
-//		Properties props = getProperties();
+        Properties props = getProperties();
         AutoGenerator mpg = new AutoGenerator();
 
-        String outputDir = "D:\\work\\workspace\\temp";
-
+        String outputDir = "D:\\work\\workspace\\temp" ;
+        final String viewOutputDir = outputDir + "/view/" ;
+//        String projectPath = System.getProperty("user.dir");
+//        gc.setOutputDir(projectPath + "/src/main/java");
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir(outputDir);
@@ -38,14 +49,17 @@ public class MysqlGenerator {
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
+        gc.setSwagger2(true);
+        gc.setOpen(true);
         gc.setAuthor("lichong");
 
         // 自定义文件命名，注意 %s 会自动填充表实体属性！
         gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
-        gc.setServiceName("%sService");
+        gc.setServiceName("I%sService");
         gc.setServiceImplName("%sServiceImpl");
         gc.setControllerName("%sController");
+        gc.setDateType(DateType.ONLY_DATE);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -53,18 +67,21 @@ public class MysqlGenerator {
         dsc.setDbType(DbType.MYSQL);
         dsc.setTypeConvert(new MySqlTypeConvert());
         dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("123456");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/springboot_test?characterEncoding=utf8&useSSL=false");
+        dsc.setUsername(props.getProperty("db.master.user"));
+        dsc.setPassword(props.getProperty("db.master.password"));
+        dsc.setUrl(props.getProperty("db.master.url"));
         mpg.setDataSource(dsc);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         // strategy.setCapitalMode(true);// 全局大写命名
         // strategy.setDbColumnUnderline(true);//全局下划线命名
-		strategy.setTablePrefix("t_");// 此处可以修改为您的表前缀
+        strategy.setTablePrefix("t_");// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        // strategy.setInclude(new String[] { "user" }); // 需要生成的表
+//        strategy.setEntityLombokModel(true); //lombok
+//        strategy.setRestControllerStyle(true); //restcontroller
+        strategy.setInclude(new String[]{"t_article"}); // 需要生成的表
+        strategy.setEntityLombokModel(true);
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
@@ -103,29 +120,29 @@ public class MysqlGenerator {
             }
         };
         // 生成的模版路径，不存在时需要先新建
-//		File viewDir = new File(viewOutputDir);
-////		if (!viewDir.exists()) {
-////			viewDir.mkdirs();
-////		}
+        File viewDir = new File(viewOutputDir);
+        if (!viewDir.exists()) {
+            viewDir.mkdirs();
+        }
         List<FileOutConfig> focList = new ArrayList<FileOutConfig>();
-//		focList.add(new FileOutConfig("/templates/add.jsp.vm") {
-//			@Override
-//			public String outputFile(TableInfo tableInfo) {
-//				return getGeneratorViewPath(viewOutputDir, tableInfo, "Add.jsp");
-//			}
-//		});
-//		focList.add(new FileOutConfig("/templates/edit.jsp.vm") {
-//			@Override
-//			public String outputFile(TableInfo tableInfo) {
-//				return getGeneratorViewPath(viewOutputDir, tableInfo, "Edit.jsp");
-//			}
-//		});
-//		focList.add(new FileOutConfig("/templates/list.jsp.vm") {
-//			@Override
-//			public String outputFile(TableInfo tableInfo) {
-//				return getGeneratorViewPath(viewOutputDir, tableInfo, "List.jsp");
-//			}
-//		});
+        focList.add(new FileOutConfig("/templates/add.jsp.vm") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return getGeneratorViewPath(viewOutputDir, tableInfo, "Add.jsp");
+            }
+        });
+        focList.add(new FileOutConfig("/templates/edit.jsp.vm") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return getGeneratorViewPath(viewOutputDir, tableInfo, "Edit.jsp");
+            }
+        });
+        focList.add(new FileOutConfig("/templates/list.jsp.vm") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return getGeneratorViewPath(viewOutputDir, tableInfo, "List.jsp");
+            }
+        });
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
 
@@ -138,28 +155,28 @@ public class MysqlGenerator {
      *
      * @return 配置Props
      */
-//	private static Properties getProperties() {
-//		// 读取配置文件
-//		Resource resource = new ClassPathResource("/config/application.properties");
-//		Properties props = new Properties();
-//		try {
-//			props = PropertiesLoaderUtils.loadProperties(resource);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return props;
-//	}
+    private static Properties getProperties() {
+        // 读取配置文件
+        Resource resource = new ClassPathResource("/application.properties");
+        Properties props = new Properties();
+        try {
+            props = PropertiesLoaderUtils.loadProperties(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return props;
+    }
 
     /**
      * 页面生成的文件名
      */
-//	private static String getGeneratorViewPath(String viewOutputDir, TableInfo tableInfo, String suffixPath) {
-//		String name = StringUtils.firstToLowerCase(tableInfo.getEntityName());
-//		String path = viewOutputDir + "/" + name + "/" + name + suffixPath;
-//		File viewDir = new File(path).getParentFile();
-//		if (!viewDir.exists()) {
-//			viewDir.mkdirs();
-//		}
-//		return path;
-//	}
+    private static String getGeneratorViewPath(String viewOutputDir, TableInfo tableInfo, String suffixPath) {
+        String name = StringUtils.firstToLowerCase(tableInfo.getEntityName());
+        String path = viewOutputDir + "/" + name + "/" + name + suffixPath;
+        File viewDir = new File(path).getParentFile();
+        if (!viewDir.exists()) {
+            viewDir.mkdirs();
+        }
+        return path;
+    }
 }

@@ -1,6 +1,6 @@
 package com.chong.bys.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chong.bys.domain.pojo.SysAuthoritie;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

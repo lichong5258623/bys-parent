@@ -4,11 +4,11 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.chong.bys.domain.pojo.SysAuthoritie">
-        <id column="id" property="id" />
-        <result column="authoritie_name" property="authoritieName" />
-        <result column="authoritie_resource" property="authoritieResource" />
-        <result column="create_time" property="createTime" />
-        <result column="descirption" property="descirption" />
+        <id column="id" property="id"/>
+        <result column="authoritie_name" property="authoritieName"/>
+        <result column="authoritie_resource" property="authoritieResource"/>
+        <result column="create_time" property="createTime"/>
+        <result column="descirption" property="descirption"/>
     </resultMap>
 
 </mapper>

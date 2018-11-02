@@ -1,11 +1,7 @@
 package com.chong.bys.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.chong.bys.domain.pojo.SysUser;
-import com.baomidou.mybatisplus.service.IService;
-
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * <p>

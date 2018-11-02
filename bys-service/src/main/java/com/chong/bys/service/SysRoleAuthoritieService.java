@@ -1,7 +1,7 @@
 package com.chong.bys.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.chong.bys.domain.pojo.SysRoleAuthoritie;
-import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>

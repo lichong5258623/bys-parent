@@ -65,6 +65,10 @@ spring:
   http:
     encoding:
       charset: utf-8 #默认就是utf-8
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch01
+      cluster-nodes: 60.205.206.199:9300
 
 #mybatis
 mybatis-plus:

@@ -34,6 +34,8 @@
     </table>
 
     <span th:text="${#httpSession.getAttribute('SPRING_SECURITY_LAST_EXCEPTION')}"></span>
+
+    <span th:text="${#request.getServerName()}"></span>
 </form>
 </body>
 </html>

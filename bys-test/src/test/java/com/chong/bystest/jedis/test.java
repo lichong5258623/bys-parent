@@ -56,11 +56,35 @@ public class test {
 
         String s = jedis.get("001");
         long end2 = System.currentTimeMillis();
-        log.info(end2-start2+"");
+        log.info(end2 - start2 + "");
         log.info(s);
         log.info(incr.toString());
         jedis.close();
     }
 
+    @Test
+    public void test03() {
+
+        Jedis jedis = jedisPool.getResource();
+
+        jedis.select(3);
+        jedis.set("demo01", "demo01你好");
+
+        String demo01 = jedis.get("demo01");
+        jedis.hset("user_32", "id", "32");
+
+        String name = this.getClass().getName();
+
+        log.info(name);
+
+    }
+
+
+    @Test
+    public void hashTest() {
+
+        Jedis jedis = jedisPool.getResource();
+
+    }
 
 }
