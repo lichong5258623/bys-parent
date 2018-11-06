@@ -15,7 +15,9 @@
         <version>2.0.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
+    <properties>
+        <skipTests>true</skipTests>
+    </properties>
     <modules>
         <module>bys-core</module>
         <module>bys-dao</module>
