@@ -1,24 +1,14 @@
 package com.chong.bystest.okhttp.test;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-
+import okhttp3.*;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 //http://square.github.io/okhttp/3.x/okhttp/    okhttp官方api
 //http://square.github.io/okhttp/#examples      官方例子

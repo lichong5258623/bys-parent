@@ -135,13 +135,8 @@ public class beanUtilTest {
         User user = new User();
         user.setId(111L);
 
-        User2 user2 = new User2();
 
-        BeanUtils.copyProperties(user, user2);
 
-        org.apache.commons.beanutils.BeanUtils.copyProperties(user2, user);
-
-        log.info("id：{}",user2.getId());
     }
 
 }

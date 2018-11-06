@@ -19,10 +19,12 @@
     <modules>
         <module>bys-core</module>
         <module>bys-dao</module>
-        <module>bys-service</module>
-        <module>bys-generator</module>
         <module>bys-dubbo-remote-api</module>
         <module>bys-dubbo-remote-consumer</module>
+        <module>bys-dubbo-remote-provider</module>
+        <module>bys-generator</module>
+        <module>bys-service</module>
+        <module>bys-web</module>
         <module>bys-test</module>
     </modules>
 
