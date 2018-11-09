@@ -1,7 +1,6 @@
 package com.chong.bys.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,8 +13,6 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-
         log.info("preHandle------请求前处理...");
 
         return true;

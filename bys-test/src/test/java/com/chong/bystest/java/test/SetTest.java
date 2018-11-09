@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author lichong
@@ -38,5 +39,30 @@ public class SetTest {
         System.out.println(user2.toString());
 
     }
+
+    @Test
+    public void test03(){
+        HashSet<String> set = new HashSet<>();
+        ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();
+
+        ThreadLocal<String> stringThreadLocal = new ThreadLocal<>();
+        stringThreadLocal.set("aaaaa");
+        String s = stringThreadLocal.get();
+        System.out.println(s);
+    }
+
+
+    @Test
+    public void testListindex(){
+
+        ArrayList<String> strings = new ArrayList<>();
+
+
+        for(int i = 1;i<10;i++){
+            strings.add("str"+i);
+        }
+    }
+
+
 
 }

@@ -123,7 +123,6 @@ public class TestController extends BaseController {
     public String testProceTemplate(HttpServletRequest request, HttpServletResponse response, Model model) {
 
         String html;
-
         model.addAttribute("name", "李崇");
         model.addAttribute("hello", "你好，手动解析html成功");
         WebContext webContext = new WebContext(request, response, request.getServletContext(), request.getLocale(), model.asMap());
