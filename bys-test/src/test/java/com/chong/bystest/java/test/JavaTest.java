@@ -162,11 +162,6 @@ public class JavaTest {
 
     @Test
     public void test001(){
-        List<String> list = null;
-
-        for (String s : list) {
-            System.out.println(s);
-        }
     }
 
 }
