@@ -16,6 +16,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <properties>
+        <!--同一打包跳过测试-->
         <skipTests>true</skipTests>
     </properties>
     <modules>
