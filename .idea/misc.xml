@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/bys-test/pom.xml" />
         <option value="$PROJECT_DIR$/bys-dubbo-remote-provider/pom.xml" />
         <option value="$PROJECT_DIR$/bys-dubbo-remote-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-demo/pom.xml" />
       </list>
     </option>
   </component>

@@ -57,7 +57,6 @@ public class SetTest {
 
         ArrayList<String> strings = new ArrayList<>();
 
-
         for(int i = 1;i<10;i++){
             strings.add("str"+i);
         }

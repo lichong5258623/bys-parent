@@ -16,6 +16,7 @@
         <module name="bys-test" />
         <module name="bys-web" />
         <module name="generator" />
+        <module name="nacos-demo" />
         <module name="web" />
       </profile>
     </annotationProcessing>
@@ -31,6 +32,7 @@
       <module name="bys-test" target="1.8" />
       <module name="bys-web" target="1.8" />
       <module name="generator" target="1.8" />
+      <module name="nacos-demo" target="1.8" />
       <module name="parent" target="1.8" />
       <module name="web" target="1.8" />
     </bytecodeTargetLevel>
