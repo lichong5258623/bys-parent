@@ -27,6 +27,7 @@
       <module name="bys-dubbo-remote-consumer" target="1.8" />
       <module name="bys-dubbo-remote-provider" target="1.8" />
       <module name="bys-generator" target="1.8" />
+      <module name="bys-parent" target="1.8" />
       <module name="bys-remote-service-dubbo" target="1.8" />
       <module name="bys-service" target="1.8" />
       <module name="bys-test" target="1.8" />
