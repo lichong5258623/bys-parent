@@ -9,9 +9,16 @@
  ***************************************************************************/
 package com.chong.nacosdemo;
 
+import com.alibaba.nacos.api.annotation.NacosInjected;
+import com.alibaba.nacos.api.exception.NacosException;
+import com.alibaba.nacos.api.naming.NamingService;
+import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * 功能说明：
@@ -27,11 +34,20 @@ public class HelloController {
     @Value("${author.name}")
     private String useLocalCache;
 
-
+    @NacosInjected
+    private NamingService namingService;
 
     @GetMapping(value = "/get")
     public String get() {
         return useLocalCache;
     }
 
+    @RequestMapping(value = "/get2", method = GET)
+    public List<Instance> get2(@RequestParam String serviceName) throws NacosException {
+        return namingService.getAllInstances(serviceName);
+    }
+
+    public void setUseLocalCache(String useLocalCache) {
+        this.useLocalCache = useLocalCache;
+    }
 }
