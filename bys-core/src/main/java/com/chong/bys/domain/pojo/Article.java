@@ -35,11 +35,12 @@ public class Article extends Model<Article> {
     @ApiModelProperty(value = "主键")
     private Long id;
 
-    @NotNull
+    @NotNull(message = "文章标题不能为空")
     @Length(min = 1,max = 10)
     @ApiModelProperty(value = "文章标题")
     private String title;
-    @NotNull
+
+    @NotNull(message = "文章内容不能为空")
     @ApiModelProperty(value = "文章内容")
     private String content;
 

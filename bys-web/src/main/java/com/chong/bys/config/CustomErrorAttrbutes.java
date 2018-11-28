@@ -3,7 +3,6 @@ package com.chong.bys.config;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Map;
@@ -19,7 +18,7 @@ public class CustomErrorAttrbutes extends DefaultErrorAttributes {
         //取出自定义错误信息
         Object customErrorMsg = webRequest.getAttribute("customErrorMsg", RequestAttributes.SCOPE_REQUEST);
         //在此可以添加自定义返回的错误属性
-        errorAttributes.put("author", "李崇");
+        errorAttributes.put("author", "bys-boy");
         errorAttributes.put("customErrorMsg", customErrorMsg);
         return errorAttributes;
     }

@@ -1,6 +1,7 @@
 package com.chong.bys.base;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author lichong
@@ -9,11 +10,9 @@ import lombok.Data;
 @Data
 public class Result<T> {
 
-
     private static int CustomErrorCode = 900;
 
-
-    private Integer code;
+    private Integer status;
 
     private String message;
 
@@ -39,22 +38,22 @@ public class Result<T> {
         return getInstance(200, message, data);
     }
 
-    public static <T> Result<T> error(Integer code, String message) {
+    public static <T> Result<T> error(Integer status, String message) {
 
-        return getInstance(code, message, null);
+        return getInstance(status, message, null);
     }
 
     public static <T> Result<T> error(String message) {
+
         return getInstance(CustomErrorCode, message, null);
     }
 
-    private static <T> Result<T> getInstance(Integer code, String message, T data) {
+    private static <T> Result<T> getInstance(Integer status, String message, T data) {
 
         Result<T> result = new Result<T>();
-        result.code = code;
+        result.status = status;
         result.message = message;
         result.data = data;
         return result;
     }
-
 }
