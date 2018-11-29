@@ -16,7 +16,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <properties>
+        <!--统一打包跳过测试-->
         <skipTests>true</skipTests>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
     </properties>
     <modules>
         <module>bys-core</module>

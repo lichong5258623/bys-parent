@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 @Builder
-public class User2 {
+public class User2 implements Cloneable{
 
     private String id;
 
@@ -22,4 +22,9 @@ public class User2 {
     private String address;
 
     private Date creatTime;
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

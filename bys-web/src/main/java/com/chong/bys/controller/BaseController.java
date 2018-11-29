@@ -8,6 +8,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,10 +21,32 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.List;
 
-
+/**
+ * @author lichong
+ * @date 2018/10/07 15:32
+ * @since 1.0
+ */
 public class BaseController  extends WebUtils {
 
+    /**
+     *  错误字段校验，配合统一异常处理,兼容hibernate validator的快速失败和全部失败
+     * @param bindingResult
+     */
+    protected void validatorParam(BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("错误信息：[");
+
+            for (FieldError fieldError : fieldErrors) {
+                stringBuilder.append(" && ").append(fieldError.getField()).append(":").append(fieldError.getDefaultMessage());
+            }
+            stringBuilder.append("]");
+            throw new RuntimeException(stringBuilder.toString().replaceFirst(" && ", ""));
+        }
+    }
 
     /**
      * redirect跳转

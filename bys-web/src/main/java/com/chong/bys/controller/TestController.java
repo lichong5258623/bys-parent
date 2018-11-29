@@ -25,6 +25,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Validator;
 import java.util.Collection;
 
 /**
@@ -45,6 +46,9 @@ public class TestController extends BaseController {
 
     @Autowired
     ApplicationContext applicationContext;
+
+    @Autowired
+    private Validator validator;
 
 
     private RequestCache requestCache = new HttpSessionRequestCache();

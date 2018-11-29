@@ -8,13 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.List;
+import javax.validation.Validator;
 
 /**
  * <p>
@@ -32,22 +31,16 @@ public class ArticleController extends BaseController {
     @Autowired
     private IArticleService articleService;
 
+    @Autowired
+    private Validator validator;
+
 
     @GetMapping("/getArticleById")
     @ResponseBody
     public Result getArticleById(@Valid Article article, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("错误字段：[");
-
-            for (FieldError fieldError : fieldErrors) {
-                stringBuilder.append(" && ").append(fieldError.getField()).append(":").append(fieldError.getDefaultMessage());
-            }
-            stringBuilder.append("]");
-            throw new RuntimeException(stringBuilder.toString().replaceFirst(" && ", ""));
-        }
+        //校验参数
+        validatorParam(bindingResult);
 
         Article byId = articleService.getById(article.getId());
 
