@@ -49,7 +49,7 @@ public class MysqlGenerator2 {
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
-        gc.setSwagger2(true);
+//        gc.setSwagger2(true);
         gc.setOpen(true);
         gc.setAuthor("lichong");
 
@@ -80,7 +80,7 @@ public class MysqlGenerator2 {
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
 //        strategy.setEntityLombokModel(true); //lombok
 //        strategy.setRestControllerStyle(true); //restcontroller
-        strategy.setInclude(new String[]{"t_article"}); // 需要生成的表
+        strategy.setInclude(new String[]{"bys_a_article"}); // 需要生成的表
         strategy.setEntityLombokModel(true);
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
@@ -110,7 +110,7 @@ public class MysqlGenerator2 {
         pc.setController("controller"); // 这里是控制器包名，默认 web
         pc.setEntity("domain.pojo");
         pc.setMapper("dao");
-        pc.setXml("sqlMapperXml");
+        pc.setXml("mapping");
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值

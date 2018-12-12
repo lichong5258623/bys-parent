@@ -1,6 +1,6 @@
 dubbo:
   application:
-    name: bys-remote-provider
+    name: bys-artical-provider
   registry:
     address: 192.168.56.101:2181
     protocol: zookeeper

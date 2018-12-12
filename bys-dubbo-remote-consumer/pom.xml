@@ -28,9 +28,15 @@
             <version>0.2.0</version>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>com.chong</groupId>-->
+            <!--<artifactId>bys-dubbo-remote-api</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>com.chong</groupId>
-            <artifactId>bys-dubbo-remote-api</artifactId>
+            <artifactId>bys-artical-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

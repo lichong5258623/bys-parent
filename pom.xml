@@ -32,6 +32,7 @@
         <module>bys-service</module>
         <module>bys-web</module>
         <module>bys-test</module>
+        <module>bys-artical-api</module>
     </modules>
 
 </project>

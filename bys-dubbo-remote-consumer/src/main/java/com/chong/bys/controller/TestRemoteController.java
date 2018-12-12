@@ -1,7 +1,8 @@
 package com.chong.bys.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.chong.bys.remote.service.TestRemoteService;
+import com.chong.bys.artical.dto.ArticalDto;
+import com.chong.bys.artical.service.ArticalService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,14 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestRemoteController {
 
 
+//    @Reference
+//    TestRemoteService testRemoteService;
+
     @Reference
-    TestRemoteService testRemoteService;
+    ArticalService articalService;
 
     @GetMapping("/getSysUser")
-    public String getSysUser(Long id){
-
-        String userName = testRemoteService.getUserName(id.toString());
-        return userName;
+    public ArticalDto getSysUser(Long id) {
+        return articalService.selectArticalById(id);
     }
 
 

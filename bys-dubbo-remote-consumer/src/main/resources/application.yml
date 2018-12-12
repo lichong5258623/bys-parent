@@ -2,7 +2,7 @@ server:
   port: 8091
 dubbo:
   registry:
-    address: 60.205.206.199:2181
+    address: 192.168.56.101:2181
     protocol: zookeeper
   application:
     name: bys-dubbo-remote-consumer

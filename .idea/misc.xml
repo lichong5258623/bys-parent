@@ -15,7 +15,14 @@
         <option value="$PROJECT_DIR$/bys-dubbo-remote-provider/pom.xml" />
         <option value="$PROJECT_DIR$/bys-dubbo-remote-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/nacos-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/bys-artical-service/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/bys-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/domain/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="NullableNotNullManager">
@@ -23,7 +30,7 @@
     <option name="myDefaultNotNull" value="javax.validation.constraints.NotNull" />
     <option name="myNullables">
       <value>
-        <list size="9">
+        <list size="10">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
           <item index="2" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
@@ -33,12 +40,13 @@
           <item index="6" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.Nullable" />
           <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
+          <item index="9" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNullable" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="9">
+        <list size="10">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
           <item index="2" class="java.lang.String" itemvalue="javax.validation.constraints.NotNull" />
@@ -48,6 +56,7 @@
           <item index="6" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.NonNull" />
           <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
+          <item index="9" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNonNull" />
         </list>
       </value>
     </option>
