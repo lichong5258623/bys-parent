@@ -46,8 +46,8 @@ spring:
      # pool-prepared-statements: true
      # max-pool-prepared-statement-per-connection-size: 20
   redis:
-    host: 60.205.206.199
-    port: 6379
+    host: 47.101.68.18
+    port: 26379
     password: 123456
   session:
     store-type: redis
@@ -110,8 +110,8 @@ mybatis-plus:
 
   #自定义redis 单位秒
 redis:
-  host: 60.205.206.199
-  port: 6379
+  host: 47.101.68.18
+  port: 26379
   timeout: 3
   password: 123456
   poolMaxTotal: 10

@@ -11,7 +11,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/web/pom.xml" />
         <option value="$PROJECT_DIR$/bys-web/pom.xml" />
-        <option value="$PROJECT_DIR$/bys-test/pom.xml" />
         <option value="$PROJECT_DIR$/bys-dubbo-remote-provider/pom.xml" />
         <option value="$PROJECT_DIR$/bys-dubbo-remote-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/nacos-demo/pom.xml" />
@@ -20,7 +19,9 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/bys-dao/pom.xml" />
         <option value="$PROJECT_DIR$/bys-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/bys-service/pom.xml" />
         <option value="$PROJECT_DIR$/domain/pom.xml" />
       </set>
     </option>
