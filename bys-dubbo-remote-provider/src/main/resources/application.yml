@@ -2,7 +2,7 @@ dubbo:
   application:
     name: bys-remote-provider
   registry:
-    address: 192.168.56.101:2181
+    address: 47.101.68.18:22181
     protocol: zookeeper
   protocol:
     name: dubbo
