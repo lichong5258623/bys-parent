@@ -7,6 +7,7 @@ import com.chong.bys.domain.vo.BysUserVo;
 import com.chong.bys.service.MyUserDetailsService;
 import com.chong.bys.service.SysAuthoritieService;
 import com.chong.bys.service.SysUserService;
+import com.chong.bys.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,8 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
      */
     @Override
     public boolean createUser(BysUserVo bysUserVo) {
-        SysUser sysUser = bysUserVo.convertToSysUser();
+        SysUser sysUser = new SysUser();
+        BeanUtil.convert(bysUserVo,sysUser);
         String password = sysUser.getPassword();
         sysUser.setPassword(passwordEncoder.encode(password));
         sysUser.setAccountNonExpired(1);
@@ -85,7 +87,9 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     @Override
     public boolean updateUser(BysUserVo bysUserVo) {
 
-        SysUser sysUser = bysUserVo.convertToSysUser();
+
+        SysUser sysUser = new SysUser();
+        BeanUtil.convert(bysUserVo,sysUser);
         return sysUserService.updateById(sysUser);
     }
 

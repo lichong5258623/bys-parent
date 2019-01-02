@@ -1,8 +1,6 @@
 package com.chong.bys.domain.vo;
 
-import com.chong.bys.domain.pojo.SysUser;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -124,20 +122,6 @@ public class BysUserVo implements UserDetails, CredentialsContainer {
     @Override
     public void eraseCredentials() {
         password = null;
-    }
-
-    public SysUser convertToSysUser() {
-        SysUser sysUser = new SysUser();
-        BeanUtils.copyProperties(this, sysUser);
-        sysUser.setCredentialsNonExpired(convertState(credentialsNonExpired));
-        sysUser.setAccountNonExpired(convertState(accountNonExpired));
-        sysUser.setAccountNonLocked(convertState(accountNonLocked));
-        sysUser.setEnable(convertState(enabled));
-        return sysUser;
-    }
-
-    private int convertState(boolean state) {
-        return state ? 1 : 0;
     }
 
 }
