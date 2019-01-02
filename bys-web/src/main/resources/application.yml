@@ -3,11 +3,18 @@ server:
   servlet:
     context-path: /bys
 
+dubbo:
+  registry:
+    address: 47.101.68.18:22181
+    protocol: zookeeper
+  application:
+    name: bys-web
+  consumer:
+    check: false
 
 spring:
   application:
-    name: mail
-
+    name: bys-web
   mail:
     host: smtp.qq.com
     username: 578267200@qq.com

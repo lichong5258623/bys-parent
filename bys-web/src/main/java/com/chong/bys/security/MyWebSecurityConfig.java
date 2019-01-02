@@ -34,7 +34,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(bysAuthenticationSuccessHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/swagger-ui/**","/staticPages/**","/error","/loginPage.html","/index").permitAll()
+                .antMatchers("/test/**","/swagger-ui/**","/staticPages/**","/error","/loginPage.html","/index").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
