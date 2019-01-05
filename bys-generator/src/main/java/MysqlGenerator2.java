@@ -80,7 +80,7 @@ public class MysqlGenerator2 {
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
 //        strategy.setEntityLombokModel(true); //lombok
 //        strategy.setRestControllerStyle(true); //restcontroller
-        strategy.setInclude(new String[]{"bys_a_article"}); // 需要生成的表
+        strategy.setInclude(new String[]{"t_sys_authoritie","t_sys_role","t_sys_role_authoritie","t_sys_user","t_sys_user_role"}); // 需要生成的表
         strategy.setEntityLombokModel(true);
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
@@ -106,9 +106,9 @@ public class MysqlGenerator2 {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(null);  //所属模块
-        pc.setParent("com.chong.bys"); // 自定义包路径
+        pc.setParent("com.chong.bys.user"); // 自定义包路径
         pc.setController("controller"); // 这里是控制器包名，默认 web
-        pc.setEntity("domain.pojo");
+        pc.setEntity("domain");
         pc.setMapper("dao");
         pc.setXml("mapping");
         mpg.setPackageInfo(pc);

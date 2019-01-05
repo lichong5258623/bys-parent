@@ -24,12 +24,14 @@
     </properties>
     <modules>
         <module>bys-core</module>
-        <module>bys-dubbo-remote-api</module>
-        <module>bys-dubbo-remote-consumer</module>
-        <module>bys-dubbo-remote-provider</module>
         <module>bys-generator</module>
         <module>bys-web</module>
+        <!--文章模块-->
         <module>bys-artical-api</module>
+        <module>bys-artical-service</module>
+        <!--用户模块-->
+        <module>bys-user-api</module>
+        <module>bys-user-service</module>
     </modules>
 
 </project>

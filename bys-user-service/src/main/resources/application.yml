@@ -1,16 +1,16 @@
 dubbo:
   application:
-    name: bys-artical-provider
+    name: bys-user-provider
   registry:
     address: 47.101.68.18:22181
     protocol: zookeeper
   protocol:
     name: dubbo
-    port: 20081
+    port: 20082
 
 spring:
   application:
-    name: bys-dubbo-remote-provider
+    name: bys-user-provider
   datasource:
     name: mysql
     type: com.alibaba.druid.pool.DruidDataSource
@@ -37,7 +37,7 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:/mapping/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.chong.bys.domain
+  typeAliasesPackage: com.chong.bys.user.domain
   #  typeEnumsPackage: com.baomidou.springboot.entity.enums
   global-config:
     #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";

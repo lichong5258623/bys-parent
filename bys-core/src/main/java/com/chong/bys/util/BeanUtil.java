@@ -1,14 +1,22 @@
 package com.chong.bys.util;
 
-import org.springframework.beans.BeanUtils;
+import com.chong.bys.exception.BysException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.BeanUtils;
 
 /**
  * 对象工具类
  */
+@Slf4j
 public class BeanUtil {
 
     public static void convert(Object source,Object target){
-        BeanUtils.copyProperties(source,target);
+        try {
+            BeanUtils.copyProperties(target,source);
+        }catch (Exception e){
+            log.info("对象拷贝出错{}--->{}",source,target);
+            throw new BysException("对象拷贝出错");
+        }
     }
 
 }

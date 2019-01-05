@@ -9,24 +9,21 @@
         <module name="bys-artical-api" />
         <module name="bys-artical-service" />
         <module name="bys-core" />
-        <module name="bys-dubbo-remote-api" />
-        <module name="bys-dubbo-remote-consumer" />
-        <module name="bys-dubbo-remote-provider" />
         <module name="bys-generator" />
+        <module name="bys-user-api" />
+        <module name="bys-user-service" />
         <module name="bys-web" />
-        <module name="generator" />
-        <module name="nacos-demo" />
-        <module name="web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bys-dao" target="1.8" />
-      <module name="bys-remote-service-dubbo" target="1.8" />
-      <module name="bys-service" target="1.8" />
-      <module name="bys-test" target="1.8" />
-      <module name="generator" target="1.8" />
+      <module name="bys-artical-api" target="1.8" />
+      <module name="bys-artical-service" target="1.8" />
+      <module name="bys-core" target="1.8" />
+      <module name="bys-generator" target="1.8" />
+      <module name="bys-user-api" target="1.8" />
+      <module name="bys-user-service" target="1.8" />
+      <module name="bys-web" target="1.8" />
       <module name="parent" target="1.8" />
-      <module name="web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -34,15 +31,10 @@
       <module name="bys-artical-api" options="-parameters" />
       <module name="bys-artical-service" options="-parameters" />
       <module name="bys-core" options="-parameters" />
-      <module name="bys-dao" options="-parameters" />
-      <module name="bys-dubbo-remote-api" options="-parameters" />
-      <module name="bys-dubbo-remote-consumer" options="-parameters" />
-      <module name="bys-dubbo-remote-provider" options="-parameters" />
       <module name="bys-generator" options="-parameters" />
-      <module name="bys-service" options="-parameters" />
-      <module name="bys-test" options="-parameters" />
+      <module name="bys-user-api" options="-parameters" />
+      <module name="bys-user-service" options="-parameters" />
       <module name="bys-web" options="-parameters" />
-      <module name="nacos-demo" options="-parameters" />
     </option>
   </component>
 </project>

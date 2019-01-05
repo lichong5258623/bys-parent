@@ -1,5 +1,6 @@
 package com.chong.bys.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chong.bys.domain.pojo.SysAuthoritie;
 import com.chong.bys.domain.pojo.SysUser;
@@ -7,6 +8,8 @@ import com.chong.bys.domain.vo.BysUserVo;
 import com.chong.bys.service.MyUserDetailsService;
 import com.chong.bys.service.SysAuthoritieService;
 import com.chong.bys.service.SysUserService;
+import com.chong.bys.user.api.pojo.UserDto;
+import com.chong.bys.user.api.serivce.UserService;
 import com.chong.bys.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -35,6 +38,9 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     @Autowired
     SysUserService sysUserService;
 
+    @Reference
+    UserService userService;
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -45,13 +51,11 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("用户名" + username);
-        QueryWrapper<SysUser> sysUserEntityWrapper = new QueryWrapper<>();
-        sysUserEntityWrapper.eq("username", username);
-        SysUser sysUser = sysUserService.getOne(sysUserEntityWrapper);
-        if (sysUser == null) {
+        UserDto userDto = userService.getUserByUserName(username);
+        if (userDto == null) {
             throw new UsernameNotFoundException("你输入的密码和账户名不匹配");
         }
-        BysUserVo bysUserVo = convertToBysUserVo(sysUser);
+        BysUserVo bysUserVo = convertToBysUserVo(userDto);
         log.info("需要验证的用户信息：{}", bysUserVo);
         List<SysAuthoritie> sysAuthorities = sysAuthoritieService.selectAuthoritiesByUserId(bysUserVo.getId());
         HashSet<GrantedAuthority> grantedAuthorities = new HashSet<>(sysAuthorities);
@@ -87,7 +91,6 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     @Override
     public boolean updateUser(BysUserVo bysUserVo) {
 
-
         SysUser sysUser = new SysUser();
         BeanUtil.convert(bysUserVo,sysUser);
         return sysUserService.updateById(sysUser);
@@ -112,18 +115,10 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     }
 
 
-    private BysUserVo convertToBysUserVo(SysUser sysUser) {
+    private BysUserVo convertToBysUserVo(UserDto sysUser) {
         BysUserVo bysUserVo = new BysUserVo();
-        BeanUtils.copyProperties(sysUser, bysUserVo);
-        bysUserVo.setAccountNonExpired(convertState(sysUser.getAccountNonExpired()));
-        bysUserVo.setAccountNonLocked(convertState(sysUser.getAccountNonLocked()));
-        bysUserVo.setEnabled(convertState(sysUser.getEnable()));
-        bysUserVo.setCredentialsNonExpired(convertState(sysUser.getCredentialsNonExpired()));
+        BeanUtil.convert(sysUser, bysUserVo);
         return bysUserVo;
-    }
-
-    private boolean convertState(int state) {
-        return state == 1;
     }
 
 }
