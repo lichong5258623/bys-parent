@@ -1,18 +1,14 @@
 package com.chong.bys.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chong.bys.domain.pojo.SysAuthoritie;
-import com.chong.bys.domain.pojo.SysUser;
-import com.chong.bys.domain.vo.BysUserVo;
+import com.chong.bys.domain.pojo.UserAuthoritie;
+import com.chong.bys.security.BysUserVo;
 import com.chong.bys.service.MyUserDetailsService;
-import com.chong.bys.service.SysAuthoritieService;
-import com.chong.bys.service.SysUserService;
+import com.chong.bys.user.api.pojo.AuthoritieDto;
 import com.chong.bys.user.api.pojo.UserDto;
 import com.chong.bys.user.api.serivce.UserService;
 import com.chong.bys.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author lichong
@@ -35,17 +32,11 @@ import java.util.List;
 @Component
 public class MyUserDetailsServiceImpl implements MyUserDetailsService {
 
-    @Autowired
-    SysUserService sysUserService;
-
     @Reference
     UserService userService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
-
-    @Autowired
-    SysAuthoritieService sysAuthoritieService;
 
 
     @Override
@@ -55,10 +46,15 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
         if (userDto == null) {
             throw new UsernameNotFoundException("你输入的密码和账户名不匹配");
         }
-        BysUserVo bysUserVo = convertToBysUserVo(userDto);
+        BysUserVo bysUserVo = new BysUserVo();
+        BeanUtil.convert(userDto, bysUserVo);
         log.info("需要验证的用户信息：{}", bysUserVo);
-        List<SysAuthoritie> sysAuthorities = sysAuthoritieService.selectAuthoritiesByUserId(bysUserVo.getId());
-        HashSet<GrantedAuthority> grantedAuthorities = new HashSet<>(sysAuthorities);
+        List<AuthoritieDto> authoritieDtos = userService.selectAuthoritiesByUserId(bysUserVo.getId());
+        HashSet<GrantedAuthority> grantedAuthorities = authoritieDtos.stream().parallel().map(authoritieDto -> {
+            UserAuthoritie userAuthoritie = new UserAuthoritie();
+            BeanUtil.convert(authoritieDto, userAuthoritie);
+            return userAuthoritie;
+        }).collect(Collectors.toCollection(HashSet::new));
         bysUserVo.setAuthorities(grantedAuthorities);
         return bysUserVo;
     }
@@ -70,17 +66,13 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
      */
     @Override
     public boolean createUser(BysUserVo bysUserVo) {
-        SysUser sysUser = new SysUser();
-        BeanUtil.convert(bysUserVo,sysUser);
-        String password = sysUser.getPassword();
-        sysUser.setPassword(passwordEncoder.encode(password));
-        sysUser.setAccountNonExpired(1);
-        sysUser.setEnable(1);
-        sysUser.setAccountNonLocked(1);
-        sysUser.setCredentialsNonExpired(1);
+        UserDto userDto = new UserDto();
+        BeanUtil.convert(bysUserVo,userDto);
+        String password = userDto.getPassword();
+        userDto.setPassword(passwordEncoder.encode(password));
         log.info("密码长度：{}", passwordEncoder.encode(password).length());
 
-        return sysUserService.save(sysUser);
+        return userService.save(userDto);
     }
 
     /**
@@ -91,9 +83,9 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     @Override
     public boolean updateUser(BysUserVo bysUserVo) {
 
-        SysUser sysUser = new SysUser();
-        BeanUtil.convert(bysUserVo,sysUser);
-        return sysUserService.updateById(sysUser);
+        UserDto userDto = new UserDto();
+        BeanUtil.convert(bysUserVo,userDto);
+        return userService.updateById(userDto);
     }
 
     /**
@@ -106,19 +98,10 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
         Authentication currentUser = SecurityContextHolder.getContext()
                 .getAuthentication();
         BysUserVo details = (BysUserVo) currentUser.getPrincipal();
-
-        SysUser sysUser = new SysUser();
-        sysUser.setId(details.getId());
-        sysUser.setPassword(passwordEncoder.encode(newPassword));
-
-        return sysUserService.updateById(sysUser);
-    }
-
-
-    private BysUserVo convertToBysUserVo(UserDto sysUser) {
-        BysUserVo bysUserVo = new BysUserVo();
-        BeanUtil.convert(sysUser, bysUserVo);
-        return bysUserVo;
+        UserDto userDto = new UserDto();
+        userDto.setId(details.getId());
+        userDto.setPassword(passwordEncoder.encode(newPassword));
+        return userService.updateById(userDto);
     }
 
 }

@@ -1,6 +1,5 @@
 package com.chong.bys.service.impl;
 
-import com.chong.bys.service.SysUserService;
 import com.chong.bys.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class AsyncTestService {
 
-
-    @Autowired
-    SysUserService sysUserService;
 
     @Autowired
     RedisUtil redisUtil;

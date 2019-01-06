@@ -1,4 +1,4 @@
-package com.chong.bys.domain.vo;
+package com.chong.bys.security;
 
 import lombok.Data;
 import org.springframework.security.core.CredentialsContainer;

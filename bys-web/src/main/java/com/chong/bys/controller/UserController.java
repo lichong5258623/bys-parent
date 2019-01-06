@@ -2,16 +2,10 @@ package com.chong.bys.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.chong.bys.artical.service.ArticalService;
-import com.chong.bys.domain.pojo.SysUser;
-import com.chong.bys.domain.vo.BysUserVo;
 import com.chong.bys.exception.BysException;
-import com.chong.bys.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
@@ -19,7 +13,6 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
@@ -28,7 +21,6 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Validator;
-import java.util.Collection;
 
 /**
  * @author lichong
@@ -39,9 +31,6 @@ import java.util.Collection;
 @Slf4j
 @Controller
 public class UserController extends BaseController {
-
-    @Autowired
-    SysUserService sysUserService;
 
     @Autowired
     ThymeleafViewResolver thymeleafViewResolver;
@@ -88,31 +77,6 @@ public class UserController extends BaseController {
         return "loginPage";
     }
 
-
-    /**
-     * 异常测试，传入id为2报异常
-     *
-     * @param id 用户id
-     * @return
-     */
-    @GetMapping("/getSysUser")
-    @ResponseBody
-    public SysUser getSysUser(Long id) {
-        if (id == 2) {
-            int i = 2 / 0;
-        }
-        Authentication currentUser = SecurityContextHolder.getContext()
-                .getAuthentication();
-        boolean authenticated = currentUser.isAuthenticated();
-        Collection<? extends GrantedAuthority> authorities = currentUser.getAuthorities();
-        long testauthoritie = authorities.stream().filter(s -> ((GrantedAuthority) s).getAuthority().equals("testauthoritie")).count();
-
-        BysUserVo principal = (BysUserVo) currentUser.getPrincipal();
-        log.info("登陆成功对象信息：{}", principal);
-        return sysUserService.getById(id);
-    }
-
-
     @GetMapping("/getSessionId")
     @ResponseBody
     public String getLoginSessionId(HttpServletRequest request) {
@@ -139,9 +103,4 @@ public class UserController extends BaseController {
         return html;
     }
 
-    @PostMapping("/testtimeReceive")
-    public BysUserVo testtimeReceive(BysUserVo bysUserVo){
-
-        return bysUserVo;
-    }
 }

@@ -6,6 +6,8 @@ import com.chong.bys.user.service.ISysAuthoritieService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -16,5 +18,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysAuthoritieServiceImpl extends ServiceImpl<SysAuthoritieMapper, SysAuthoritie> implements ISysAuthoritieService {
-	
+    @Override
+    public List<SysAuthoritie> selectAuthoritiesByUserId(long id) {
+
+        return baseMapper.selectAuthoritiesByUserId(id);
+    }
 }

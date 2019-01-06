@@ -1,6 +1,6 @@
 package com.chong.bys.service;
 
-import com.chong.bys.domain.vo.BysUserVo;
+import com.chong.bys.security.BysUserVo;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**

@@ -1,7 +1,9 @@
 package com.chong.bys.user.service;
 
-import com.chong.bys.user.domain.SysAuthoritie;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chong.bys.user.domain.SysAuthoritie;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-01-05
  */
 public interface ISysAuthoritieService extends IService<SysAuthoritie> {
-	
+
+    List<SysAuthoritie> selectAuthoritiesByUserId(long id);
 }

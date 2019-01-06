@@ -1,6 +1,6 @@
-package com.chong.bys.base;
+package com.chong.bys.interceptor;
 
-import com.chong.bys.domain.vo.BysUserVo;
+import com.chong.bys.security.BysUserVo;
 
 /**
  * 功能说明：定义一些threadLocal类

@@ -1,7 +1,5 @@
 package com.chong.bys.controller;
 
-import com.chong.bys.domain.pojo.SysUser;
-import com.chong.bys.service.SysUserService;
 import com.chong.bys.service.impl.AsyncTestService;
 import com.chong.bys.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -29,13 +27,8 @@ public class AsyncTestController {
     AsyncTestService asyncTestService;
 
     @Autowired
-    SysUserService sysUserService;
-    
-    @Autowired
     RedisUtil redisUtil;
 
-
-    private ConcurrentHashMap<String,DeferredResult<List<SysUser>>> concurrentHashMap = new ConcurrentHashMap<>();
 
 
     @GetMapping("/async01")
@@ -60,13 +53,5 @@ public class AsyncTestController {
         log.info("我是{}",Thread.currentThread().getId());
         redisUtil.setObject("deferred001",deferredResult);
         return deferredResult;
-    }
-
-    @GetMapping("/getAllStart")
-    public void getAllStart(){
-//        DeferredResult<List<SysUser>> defered001 = concurrentHashMap.get("deferred001");
-        DeferredResult defered001 = redisUtil.getObjet("deferred001",DeferredResult.class);
-        List<SysUser> sysUsers = sysUserService.list(null);
-        boolean b = defered001.setResult(sysUsers);
     }
 }

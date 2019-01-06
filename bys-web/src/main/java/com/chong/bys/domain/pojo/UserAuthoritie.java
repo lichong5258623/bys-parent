@@ -1,13 +1,7 @@
 package com.chong.bys.domain.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -18,30 +12,25 @@ import java.util.Date;
  * @author lichong
  * @since 2018-09-09
  */
-@TableName("t_sys_authoritie")
-public class SysAuthoritie extends Model<SysAuthoritie> implements GrantedAuthority {
+public class UserAuthoritie implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 权限资源表id
      */
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     /**
      * 权限名字
      */
-    @TableField("authoritie_name")
     private String authoritieName;
     /**
      * 权限标识符
      */
-    @TableField("authoritie_resource")
     private String authoritieResource;
     /**
      * 创建时间
      */
-    @TableField("create_time")
     private Date createTime;
     /**
      * 权限描述
@@ -87,11 +76,6 @@ public class SysAuthoritie extends Model<SysAuthoritie> implements GrantedAuthor
 
     public void setDescirption(String descirption) {
         this.descirption = descirption;
-    }
-
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
     }
 
     @Override

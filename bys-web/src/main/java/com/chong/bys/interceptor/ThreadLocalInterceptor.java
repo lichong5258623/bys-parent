@@ -1,6 +1,5 @@
 package com.chong.bys.interceptor;
 
-import com.chong.bys.base.BysLocalMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
