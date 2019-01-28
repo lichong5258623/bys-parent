@@ -20,3 +20,9 @@ local.properties
 *.iws
 .idea/*
 out/
+bys-test/.gitignore
+bys-test/pom.xml
+bys-test/src/main/java/com/chong/bys/bystest/BysTestApplication.java
+bys-test/src/main/resources/
+bys-test/src/test/
+bys-web/src/test/

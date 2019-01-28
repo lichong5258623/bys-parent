@@ -10,6 +10,7 @@
         <module name="bys-artical-service" />
         <module name="bys-core" />
         <module name="bys-generator" />
+        <module name="bys-test" />
         <module name="bys-user-api" />
         <module name="bys-user-service" />
         <module name="bys-web" />
@@ -20,6 +21,8 @@
       <module name="bys-artical-service" target="1.8" />
       <module name="bys-core" target="1.8" />
       <module name="bys-generator" target="1.8" />
+      <module name="bys-parent" target="1.8" />
+      <module name="bys-test" target="1.8" />
       <module name="bys-user-api" target="1.8" />
       <module name="bys-user-service" target="1.8" />
       <module name="bys-web" target="1.8" />
