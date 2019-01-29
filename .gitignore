@@ -1,21 +1,25 @@
-# Eclipse
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
 .classpath
+.factorypath
 .project
-.externalToolBuilders/
-.metadata
 .settings
-# Maven
-target/
-release.properties
- # Android generated
-bin/
-gen/
-gen-external-apklibs/
-# Ant
-local.properties
-# IntelliJ
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
 *.ipr
-*.iws
-out/
-.idea/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
