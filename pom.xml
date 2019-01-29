@@ -32,7 +32,6 @@
         <!--用户模块-->
         <module>bys-user-api</module>
         <module>bys-user-service</module>
-        <module>bys-test</module>
     </modules>
 
 </project>
