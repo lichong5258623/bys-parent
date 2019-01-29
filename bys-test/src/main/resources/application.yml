@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: bys-test
+  rabbitmq:
+    port: 25673
+    addresses: 47.101.68.18
+    virtual-host: /
+    username: guest
+    password: guest
