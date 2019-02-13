@@ -1,17 +1,12 @@
 package com.chong.bys.config;
 
-import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-import java.net.UnknownHostException;
 
 @Configuration
 public class RedisConfig {
@@ -32,7 +27,7 @@ public class RedisConfig {
 
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate(
-			RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+			RedisConnectionFactory redisConnectionFactory){
 		RedisTemplate<String, Object> template = new RedisTemplate<>();
 		template.setConnectionFactory(redisConnectionFactory);
 //		template.setDefaultSerializer(new GenericFastJsonRedisSerializer());
