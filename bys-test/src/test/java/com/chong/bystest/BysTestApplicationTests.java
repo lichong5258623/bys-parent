@@ -13,23 +13,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class BysTestApplicationTests {
 
-	@Autowired
-	private RabbitAdmin rabbitAdmin;
-
-	@Autowired
-	private RabbitTemplate rabbitTemplate;
-
 	@Test
 	public void contextLoads() {
-		System.out.println(rabbitAdmin);
-		System.out.println(rabbitTemplate);
+
 	}
 
-	@Test
-	public void test01(){
-		String msg = "Hello World Msg";
-		Message message = new Message(msg.getBytes(), null);
-		rabbitTemplate.convertAndSend("sb-test-exchange","springboot.test1" , message);
-	}
 }
 
