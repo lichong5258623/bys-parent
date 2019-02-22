@@ -37,4 +37,33 @@ public class JavaTest {
         return i + 1;
     }
 
+
+    @Test
+    public void testmain(){
+        int [] nums = {2};
+        int i = removeElement(nums, 3);
+        System.out.println(i);
+        for (int num:nums){
+            System.out.print(num);
+        }
+    }
+
+    public int removeElement(int[] nums, int val) {
+
+        if(nums.length<1){
+            return 0;
+        }
+        int arrayLast = nums.length-1;
+        for(int i =0;i<=arrayLast;i++){
+            if(nums[arrayLast]==val&&arrayLast>0){
+                arrayLast--;
+            }
+            if(nums[i]==val){
+                nums[i] = nums[arrayLast];
+                arrayLast--;
+            }
+        }
+
+        return arrayLast;
+    }
 }
