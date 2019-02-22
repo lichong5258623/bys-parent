@@ -1,6 +1,7 @@
 dubbo:
   application:
     name: bys-artical-provider
+    qos-enable: false
   registry:
     address: 47.101.68.18:22181
     protocol: zookeeper

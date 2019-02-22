@@ -4,11 +4,12 @@ server:
     context-path: /bys
 
 dubbo:
+  application:
+    name: bys-web
+    qos-enable: false
   registry:
     address: 47.101.68.18:22181
     protocol: zookeeper
-  application:
-    name: bys-web
   consumer:
     check: false
 

@@ -1,13 +1,13 @@
 dubbo:
   application:
     name: bys-user-provider
+    qos-enable: false
   registry:
     address: 47.101.68.18:22181
     protocol: zookeeper
   protocol:
     name: dubbo
     port: 20082
-
 spring:
   application:
     name: bys-user-provider
