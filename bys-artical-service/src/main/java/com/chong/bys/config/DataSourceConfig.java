@@ -2,6 +2,7 @@ package com.chong.bys.config;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
@@ -10,7 +11,7 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@Slf4j
 @Configuration
 public class DataSourceConfig {
 
@@ -31,8 +32,10 @@ public class DataSourceConfig {
             @Override
             protected Object determineCurrentLookupKey() {
                 if(DynamicDataSourceHolder.getCurrentDb().equals(DynamicDataSourceHolder.MASTER)){
+                    log.info("使用：{}数据库",master);
                     return master;
                 }
+                log.info("使用：{}数据库",DynamicDataSourceHolder.getCurrentDb());
                 return DynamicDataSourceHolder.getCurrentDb();
             }
         };
@@ -46,17 +49,17 @@ public class DataSourceConfig {
     private void initDataSource() {
         //配置主库
         DruidDataSource masterDataSource = new DruidDataSource();
-        masterDataSource.setUrl("");
-        masterDataSource.setUsername("");
-        masterDataSource.setPassword("");
+        masterDataSource.setUrl("jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false");
+        masterDataSource.setUsername("root");
+        masterDataSource.setPassword("123456");
         dataSources.put("master",masterDataSource);
         this.master="master";
         //配置从库
         DruidDataSource slaveDataSource = new DruidDataSource();
-        slaveDataSource.setUrl("");
-        slaveDataSource.setUsername("");
-        slaveDataSource.setPassword("");
-        dataSources.put("slave",masterDataSource);
+        masterDataSource.setUrl("jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false");
+        masterDataSource.setUsername("root");
+        masterDataSource.setPassword("123456");
+        dataSources.put("slave",slaveDataSource);
     }
 
 }
