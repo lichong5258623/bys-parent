@@ -5,6 +5,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import javax.sql.DataSource;
@@ -24,6 +25,7 @@ public class DataSourceConfig {
     private String master;
 
     @Bean
+    @Lazy
     public DataSource dataSource(){
 
         initDataSource();

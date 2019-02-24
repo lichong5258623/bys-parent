@@ -3,6 +3,7 @@ package com.chong.bys.articalservice;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.chong.bys.artical.dto.ArticalDto;
 import com.chong.bys.artical.service.ArticalService;
+import com.chong.bys.config.DynamicDataSourceHolder;
 import com.chong.bys.domain.BysAArticle;
 import com.chong.bys.service.IBysAArticleService;
 import com.chong.bys.util.BeanUtil;
@@ -35,7 +36,7 @@ public class ArticalServiceProvider implements ArticalService {
 
     @Override
     public ArticalDto selectArticalById(Serializable id) {
-
+        DynamicDataSourceHolder.setCurrentDb("slave");
         BysAArticle byId = bysAArticleService.getById(id);
         ArticalDto articalDto = new ArticalDto();
         BeanUtil.convert(byId,articalDto);
