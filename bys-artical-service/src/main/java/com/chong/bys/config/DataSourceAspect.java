@@ -1,39 +1,26 @@
-/**************************************************************************
- * Copyright (c) 2018-2022 ZheJiang Electronic Port, Inc.
- * All rights reserved.
- *
- * 项目名称：海蛛
- * 版权说明：本软件属浙江电子口岸有限公司所有，在未获得浙江电子口岸有限公司正式授权
- *           情况下，任何企业和个人，不能获取、阅读、安装、传播本软件涉及的任何受知
- *           识产权保护的内容。                            
- ***************************************************************************/
 package com.chong.bys.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource;
-import org.springframework.transaction.interceptor.TransactionAttribute;
-import org.springframework.transaction.interceptor.TransactionAttributeSource;
-import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.util.PatternMatchUtils;
-import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * 功能说明：
+ * 功能说明：数据源切换aop
  *
  * @author : <a href="mailto:lichong@zjport.gov.cn">lichong</a>
  * @version : 1.0
  * @since 3.0
  */
+@Slf4j
 @Aspect
 @Component
 @Order
@@ -41,16 +28,22 @@ public class DataSourceAspect {
 
     private List<String> slaveMethodPattern = new ArrayList<String>();
 
-    private static final String[] defaultSlaveMethodStart = new String[]{ "query", "find", "get","load" };
+    private static final String[] defaultSlaveMethodStart = new String[]{ "query", "find", "get","load","select" };
 
     private String[] slaveMethodStart;
+
+
+    @Pointcut("execution(* com.chong.bys.dao..*.*(..))")
+    public void cutDao() {}
 
     /**
      * 在进入Service方法之前执行
      *
      * @param point 切面对象
      */
-    public void before(ProceedingJoinPoint point) {
+    @Before("cutDao()")
+    public void before(JoinPoint point) {
+        log.info("执行数据库切换aop");
         // 获取到当前执行的方法名
         String methodName = point.getSignature().getName();
         boolean isSlave = false;
@@ -66,7 +59,6 @@ public class DataSourceAspect {
                 }
             }
         }
-
         if (isSlave) {
             // 标记为读库
             DynamicDataSourceHolder.markSlave();
@@ -100,7 +92,7 @@ public class DataSourceAspect {
      * @return if the names match
      * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
      */
-    protected boolean isMatch(String methodName, String mappedName) {
+    private boolean isMatch(String methodName, String mappedName) {
         return PatternMatchUtils.simpleMatch(mappedName, methodName);
     }
 
@@ -112,7 +104,7 @@ public class DataSourceAspect {
         this.slaveMethodStart = slaveMethodStart;
     }
 
-    public String[] getSlaveMethodStart() {
+    private String[] getSlaveMethodStart() {
         if(this.slaveMethodStart == null){
             // 没有指定，使用默认
             return defaultSlaveMethodStart;
