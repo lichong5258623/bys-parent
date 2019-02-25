@@ -39,7 +39,6 @@ public class ArticalServiceProvider implements ArticalService {
         DynamicDataSourceHolder.setCurrentDb("slave");
         BysAArticle byId = bysAArticleService.getById(id);
         ArticalDto articalDto = new ArticalDto();
-        BeanUtil.convert(byId,articalDto);
         BeanUtils.copyProperties(byId,articalDto);
         return articalDto;
     }

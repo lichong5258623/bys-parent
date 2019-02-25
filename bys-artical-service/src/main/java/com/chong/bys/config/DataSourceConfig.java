@@ -58,9 +58,9 @@ public class DataSourceConfig {
         this.master="master";
         //配置从库
         DruidDataSource slaveDataSource = new DruidDataSource();
-        masterDataSource.setUrl("jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false");
-        masterDataSource.setUsername("root");
-        masterDataSource.setPassword("123456");
+        slaveDataSource.setUrl("jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false");
+        slaveDataSource.setUsername("root");
+        slaveDataSource.setPassword("123456");
         dataSources.put("slave",slaveDataSource);
     }
 
