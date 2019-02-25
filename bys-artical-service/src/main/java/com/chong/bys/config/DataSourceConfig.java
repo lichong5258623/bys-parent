@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 @Configuration
@@ -19,26 +22,31 @@ public class DataSourceConfig {
 
     private Map<Object, Object> dataSources = new HashMap<>();
 
+    private AtomicInteger slaveCounter=new AtomicInteger(-1);
+
     /**
      * 主库的key
      */
-    private String master;
+    private Object master;
+
+    /**从库的key*/
+    private ArrayList<Object> slaves = new ArrayList<>();
+
 
     @Bean
     @Lazy
     public DataSource dataSource(){
-
         initDataSource();
-
         AbstractRoutingDataSource routingDataSource = new AbstractRoutingDataSource() {
             @Override
             protected Object determineCurrentLookupKey() {
-                if(DynamicDataSourceHolder.getCurrentDb().equals(DynamicDataSourceHolder.MASTER)){
-                    log.info("使用：{}数据库",master);
-                    return master;
+                if(DynamicDataSourceHolder.useSlave()){
+                    Object o = loadSlaveTarget();
+                    log.info("使用：{}数据库",o);
+                    return o;
                 }
-                log.info("使用：{}数据库",DynamicDataSourceHolder.getCurrentDb());
-                return DynamicDataSourceHolder.getCurrentDb();
+                log.info("使用：{}数据库",master);
+                return master;
             }
         };
         routingDataSource.setTargetDataSources(dataSources);
@@ -46,7 +54,8 @@ public class DataSourceConfig {
     }
 
     /**
-     * 初始化dataSources,并指定主库（后期优化到配置文件）
+     * todo 后期优化到配置文件
+     * 初始化dataSources,并指定主库
      */
     private void initDataSource() {
         //配置主库
@@ -62,6 +71,15 @@ public class DataSourceConfig {
         slaveDataSource.setUsername("root");
         slaveDataSource.setPassword("123456");
         dataSources.put("slave",slaveDataSource);
+        slaves.add("slave");
+    }
+
+    private Object loadSlaveTarget(){
+        int slave = slaveCounter.incrementAndGet()% slaves.size();
+        if(slaveCounter.get()==Integer.MAX_VALUE){
+            slaveCounter.set(-1);
+        }
+        return slaves.get(slave);
     }
 
 }
