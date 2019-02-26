@@ -3,6 +3,7 @@ package com.chong.bys.config;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -31,7 +32,6 @@ public class DataSourceAspect {
     private static final String[] defaultSlaveMethodStart = new String[]{ "query", "find", "get","load","select" };
 
     private String[] slaveMethodStart;
-
 
     @Pointcut("execution(* com.chong.bys.dao..*.*(..))")
     public void cutDao() {}
@@ -66,6 +66,12 @@ public class DataSourceAspect {
             // 标记为写库
             DynamicDataSourceHolder.markMaster();
         }
+    }
+
+    @After("cutDao()")
+    private void after(){
+        log.info("清除ThreadLocal中数据源标识");
+        DynamicDataSourceHolder.clearCurrentDb();
     }
 
     /**

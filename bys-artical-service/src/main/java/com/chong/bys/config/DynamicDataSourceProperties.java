@@ -1,8 +1,6 @@
 package com.chong.bys.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
