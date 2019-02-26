@@ -49,17 +49,17 @@ bys:
       username: root
       password: 123456
       driverClassName: com.mysql.jdbc.Driver
-#    slaves:
-#      - dataSourceKey: salve1 #从库必须配置
-#        url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
-#        username: root
-#        password: 123456
-#        driverClassName: com.mysql.jdbc.Driver
-#      - dataSourceKey: salve2
-#        url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
-#        username: root
-#        password: 123456
-#        driverClassName: com.mysql.jdbc.Driver
+    slaves:
+      - dataSourceKey: salve1 #从库必须配置
+        url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+        username: root
+        password: 123456
+        driverClassName: com.mysql.jdbc.Driver
+      - dataSourceKey: salve2
+        url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+        username: root
+        password: 123456
+        driverClassName: com.mysql.jdbc.Driver
 
 mybatis-plus:
   mapper-locations: classpath:/mapping/*Mapper.xml
