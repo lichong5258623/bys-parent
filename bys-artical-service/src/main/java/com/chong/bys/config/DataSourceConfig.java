@@ -59,6 +59,11 @@ public class DataSourceConfig {
         AbstractRoutingDataSource routingDataSource = new AbstractRoutingDataSource() {
             @Override
             protected Object determineCurrentLookupKey() {
+                //没有从库
+                if(slaves.size()<1){
+                    log.info("使用：{}数据库", master);
+                    return master;
+                }
                 if (DynamicDataSourceHolder.useSlave() != null && DynamicDataSourceHolder.useSlave()) {
                     Object o = loadSlaveTarget();
                     log.info("使用：{}数据库", o);
@@ -98,6 +103,10 @@ public class DataSourceConfig {
         }
         dataSources.put(this.master, masterDataSource);
         log.info("加载主数据源：{} 完毕", this.master);
+        if(dynamicDataSourceProperties.getSlaves()==null||dynamicDataSourceProperties.getSlaves().size()<1){
+            log.info("未配置slave数据源，即本项目只有一个数据源");
+            return;
+        }
         log.info("初始化salve数据源");
         for (DbInfo slave : dynamicDataSourceProperties.getSlaves()) {
             if (slave.getDataSourceKey() == null) {
