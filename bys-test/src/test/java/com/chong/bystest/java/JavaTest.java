@@ -66,4 +66,12 @@ public class JavaTest {
 
         return arrayLast;
     }
+
+    @Test
+    public void testLong(){
+        Long a = 60*1000L;
+        System.out.println(a.intValue());
+    }
+
+
 }

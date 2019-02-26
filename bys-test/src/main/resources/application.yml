@@ -2,8 +2,24 @@ spring:
   application:
     name: bys-test
   rabbitmq:
-    port: 25673
     addresses: 47.101.68.18
+    port: 25673
     virtual-host: /
-    username: guest
-    password: guest
+  bys:
+    datasource:
+      master:
+        url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+        username: root
+        password: 123456
+        driverClassName: com.mysql.jdbc.Driver
+      slaves:
+        - dataSourceKey: salve1
+          url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+          username: root
+          password: 123456
+          driverClassName: com.mysql.jdbc.Driver
+        - dataSourceKey: salve2
+          url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+          username: root
+          password: 123456
+          driverClassName: com.mysql.jdbc.Driver

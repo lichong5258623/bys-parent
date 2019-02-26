@@ -35,6 +35,32 @@ spring:
 #      test-on-borrow: false
 #      test-on-return: false
 #mybatis
+
+#项目数据库配置（主从）
+bys:
+  datasource:
+    initial-size: 3
+    max-active: 20
+    #配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
+    validation-query: SELECT 'x'
+    master:
+      dataSourceKey: mymaster #名字自定义,可在后台日志查看用的哪一个数据库
+      url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
+    slaves:
+      - dataSourceKey: salve1 #从库必须配置
+        url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+        username: root
+        password: 123456
+        driverClassName: com.mysql.jdbc.Driver
+      - dataSourceKey: salve2
+        url: jdbc:mysql://47.101.68.18:23306/springboot_test?characterEncoding=utf8&useSSL=false
+        username: root
+        password: 123456
+        driverClassName: com.mysql.jdbc.Driver
+
 mybatis-plus:
   mapper-locations: classpath:/mapping/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
