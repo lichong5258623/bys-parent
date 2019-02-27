@@ -58,7 +58,8 @@ public class TestController extends BaseController {
         articalDto.setMainTitle("标题");
         articalDto.setSubHeading("二级标题");
         articalDto.setReadingVolume(0);
-        articalService.createArtical(articalDto);
+        boolean artical = articalService.createArtical(articalDto);
+        log.info(artical+"");
         return Result.success();
     }
 

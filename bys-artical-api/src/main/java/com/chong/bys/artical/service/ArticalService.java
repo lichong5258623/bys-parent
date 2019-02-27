@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ArticalService {
 
-    void createArtical(ArticalDto articalDto);
+    boolean createArtical(ArticalDto articalDto);
 
     void delteArticalById(Serializable id);
 

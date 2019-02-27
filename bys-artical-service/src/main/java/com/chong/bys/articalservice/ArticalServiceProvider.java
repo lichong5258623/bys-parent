@@ -21,11 +21,11 @@ public class ArticalServiceProvider implements ArticalService {
     IBysAArticleService bysAArticleService;
 
     @Override
-    public void createArtical(ArticalDto articalDto) {
+    public boolean createArtical(ArticalDto articalDto) {
 
         BysAArticle bysAArticle = new BysAArticle();
-        BeanUtil.convert(articalDto,bysAArticle);
-        bysAArticleService.save(bysAArticle);
+        BeanUtil.convert(articalDto, bysAArticle);
+        return bysAArticleService.save(bysAArticle);
     }
 
     @Override
@@ -37,14 +37,17 @@ public class ArticalServiceProvider implements ArticalService {
     public ArticalDto selectArticalById(Serializable id) {
         BysAArticle byId = bysAArticleService.getById(id);
         ArticalDto articalDto = new ArticalDto();
-        BeanUtils.copyProperties(byId,articalDto);
+        if (byId == null) {
+            return articalDto;
+        }
+        BeanUtils.copyProperties(byId, articalDto);
         return articalDto;
     }
 
     @Override
     public void updateArticalById(ArticalDto articalDto) {
         BysAArticle bysAArticle = new BysAArticle();
-        BeanUtil.convert(articalDto,bysAArticle);
+        BeanUtil.convert(articalDto, bysAArticle);
         bysAArticleService.updateById(bysAArticle);
     }
 
