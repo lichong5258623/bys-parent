@@ -1,10 +1,10 @@
-package com.chong.bys.articalservice;
+package com.chong.bys.article.articalservice;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.chong.bys.artical.dto.ArticalDto;
 import com.chong.bys.artical.service.ArticalService;
-import com.chong.bys.domain.BysAArticle;
-import com.chong.bys.service.IBysAArticleService;
+import com.chong.bys.article.domain.BysAArticle;
+import com.chong.bys.article.service.IBysAArticleService;
 import com.chong.bys.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

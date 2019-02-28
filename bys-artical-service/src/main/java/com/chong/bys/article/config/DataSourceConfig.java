@@ -1,7 +1,10 @@
-package com.chong.bys.config;
+package com.chong.bys.article.config;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.chong.bys.config.DbInfo;
+import com.chong.bys.config.DynamicDataSourceHolder;
+import com.chong.bys.config.DynamicDataSourceProperties;
 import com.chong.bys.exception.BysException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,6 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 

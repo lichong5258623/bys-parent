@@ -1,4 +1,4 @@
-package com.chong.bys.config;
+package com.chong.bys.article.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;

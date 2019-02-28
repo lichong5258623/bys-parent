@@ -1,7 +1,7 @@
-package com.chong.bys.service;
+package com.chong.bys.article.service;
 
-import com.chong.bys.domain.BysAArticle;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chong.bys.article.domain.BysAArticle;
 
 import java.io.Serializable;
 

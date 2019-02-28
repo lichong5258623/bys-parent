@@ -71,7 +71,7 @@
         <logger name="org.elasticsearch" level="INFO"/>
         <logger name="org.eclipse" level="INFO"/>
         <logger name="io.netty" level="INFO"/>
-        <root level="debug">
+        <root level="info">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileWarn"/>

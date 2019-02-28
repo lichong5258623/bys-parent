@@ -1,9 +1,9 @@
-package com.chong.bys.service.impl;
+package com.chong.bys.article.service.impl;
 
-import com.chong.bys.dao.BysAArticleMapper;
-import com.chong.bys.domain.BysAArticle;
-import com.chong.bys.service.IBysAArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.chong.bys.article.dao.BysAArticleMapper;
+import com.chong.bys.article.domain.BysAArticle;
+import com.chong.bys.article.service.IBysAArticleService;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
