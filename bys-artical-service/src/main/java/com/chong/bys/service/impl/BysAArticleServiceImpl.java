@@ -6,6 +6,8 @@ import com.chong.bys.service.IBysAArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+
 /**
  * <p>
  *  服务实现类
@@ -16,5 +18,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BysAArticleServiceImpl extends ServiceImpl<BysAArticleMapper, BysAArticle> implements IBysAArticleService {
-	
+
+    @Override
+    public BysAArticle getArticalById(Serializable id) {
+        return baseMapper.getByArticleId(id);
+    }
 }

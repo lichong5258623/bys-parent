@@ -3,6 +3,8 @@ package com.chong.bys.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chong.bys.domain.BysAArticle;
 
+import java.io.Serializable;
+
 /**
  * <p>
   *  Mapper 接口
@@ -13,4 +15,5 @@ import com.chong.bys.domain.BysAArticle;
  */
 public interface BysAArticleMapper extends BaseMapper<BysAArticle> {
 
+     BysAArticle getByArticleId(Serializable id);
 }

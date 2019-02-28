@@ -35,7 +35,7 @@ public class ArticalServiceProvider implements ArticalService {
 
     @Override
     public ArticalDto selectArticalById(Serializable id) {
-        BysAArticle byId = bysAArticleService.getById(id);
+        BysAArticle byId = bysAArticleService.getArticalById(id);
         ArticalDto articalDto = new ArticalDto();
         if (byId == null) {
             return articalDto;

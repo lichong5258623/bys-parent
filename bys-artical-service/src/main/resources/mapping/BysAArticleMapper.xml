@@ -13,5 +13,9 @@
 		<result column="author" property="author" />
 		<result column="reading_volume" property="readingVolume" />
 	</resultMap>
+	<select id="getByArticleId" resultType="com.chong.bys.domain.BysAArticle">
+		SELECT * FROM  bys_a_article WHERE  id = #{id,jdbcType=BIGINT}
+	</select>
+
 
 </mapper>

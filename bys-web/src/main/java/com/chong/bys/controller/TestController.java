@@ -8,11 +8,9 @@ import com.chong.bys.service.MyUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -62,5 +60,10 @@ public class TestController extends BaseController {
         log.info(artical+"");
         return Result.success();
     }
+    @GetMapping("/getSessionId")
+    @ResponseBody
+    public String getLoginSessionId(HttpServletRequest request) {
 
+        return request.getSession().getId();
+    }
 }
