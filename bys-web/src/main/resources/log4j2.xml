@@ -73,11 +73,11 @@
         <logger name="io.netty" level="INFO"/>
         <root level="info">
             <appender-ref ref="Console"/>
-            <appender-ref ref="RollingFileInfo"/>
-            <appender-ref ref="RollingFileWarn"/>
-            <appender-ref ref="RollingFileError"/>
-            <!--线上调试使用-->
-            <appender-ref ref="RollingFileDebug"/>
+            <!--<appender-ref ref="RollingFileInfo"/>-->
+            <!--<appender-ref ref="RollingFileWarn"/>-->
+            <!--<appender-ref ref="RollingFileError"/>-->
+            <!--&lt;!&ndash;线上调试使用&ndash;&gt;-->
+            <!--<appender-ref ref="RollingFileDebug"/>-->
         </root>
     </loggers>
 </configuration>
