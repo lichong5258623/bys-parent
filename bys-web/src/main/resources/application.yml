@@ -51,7 +51,7 @@ spring:
   data:
     elasticsearch:
       cluster-name: elasticsearch01
-      cluster-nodes: 60.205.206.199:9300
+      cluster-nodes: 47.101.68.18:29200
 
   #自定义redis 单位秒
 redis:
