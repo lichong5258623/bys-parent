@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @EnableDubbo
 @SpringBootApplication
-@MapperScan("com.chong.bys.user.dao")
 public class BysUserServiceApplication {
 
     public static void main(String[] args) {

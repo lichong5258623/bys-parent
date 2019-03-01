@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @author lichong
  */
 @Configuration
-@MapperScan("com.chong.bys.dao")
+@MapperScan("com.chong.bys.article.dao")
 public class MybatisPlusConfig {
 
     /**
