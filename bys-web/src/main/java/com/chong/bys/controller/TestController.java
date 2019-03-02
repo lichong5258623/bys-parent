@@ -46,6 +46,15 @@ public class TestController extends BaseController {
         articalService.delteArticalById(id);
         return Result.success();
     }
+
+    @GetMapping("/testException")
+    public Result<Object> testException(String type){
+        if(type.equals("error")){
+            int s = 20/0;
+        }
+        return Result.success();
+    }
+
     @PostMapping("/cerateArtical")
     public Result<Object> cerateArtical(){
         ArticalDto articalDto = new ArticalDto();

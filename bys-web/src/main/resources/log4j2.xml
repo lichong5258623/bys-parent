@@ -16,6 +16,11 @@
             <!--<PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=cyan, DEBUG=cyan,TRACE=blue}"/>-->
         <!--</File>-->
         <!-- 这个会打印出所有的debug及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+
+        <SMTP name="Mail" subject="Error Log" to="lichong0012@163.com" from="578267200@qq.com" replyTo="578267200@qq.com"
+              smtpHost="smtp.qq.com"  smtpDebug="true" smtpProtocol="smtp" smtpUsername="578267200@qq.com" smtpPassword="gezusespywembced" smtpPort="25" bufferSize="50">
+        </SMTP>
+
         <RollingFile name="RollingFileDebug" fileName="${sys:user.home}/logs/debug.log"
                      filePattern="${sys:user.home}/logs/$${date:yyyy-MM}/debug-%d{yyyy-MM-dd}-%i.log.gz">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
@@ -78,6 +83,8 @@
             <!--<appender-ref ref="RollingFileError"/>-->
             <!--&lt;!&ndash;线上调试使用&ndash;&gt;-->
             <!--<appender-ref ref="RollingFileDebug"/>-->
+            <!--开启异常邮件，建议生产使用-->
+            <appender-ref ref="Mail"/>
         </root>
     </loggers>
 </configuration>

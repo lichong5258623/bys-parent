@@ -21,15 +21,15 @@ public class CuntomExceptionHandler extends BaseController {
         //设置请求状态码
         request.setAttribute("javax.servlet.error.status_code",500);
         //放置自定义错误信息
-        request.setAttribute("customErrorMsg", "错误信息");
-        log.info("发生异常：{}",exception.getMessage());
+        request.setAttribute("customErrorMsg", exception.getMessage());
+        log.error("发生异常：{}",exception);
         return "forward:/error";
     }
 
     @ExceptionHandler(Throwable.class)
     public String Exception(Exception exception, HttpServletRequest request){
 
-        log.info("发生异常：{}",exception.getMessage());
+        log.error("发生异常：{}",exception.getMessage());
         return "forward:/error";
     }
 }
