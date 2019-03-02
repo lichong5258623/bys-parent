@@ -14,7 +14,6 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -117,8 +116,8 @@ public class DataSourceConfig {
             slaveDataSource.setUsername(slave.getUsername());
             slaveDataSource.setPassword(slave.getPassword());
             slaveDataSource.setFilters("stat,wall");
-            masterDataSource.setInitialSize(dynamicDataSourceProperties.getInitialSize());
-            masterDataSource.setMaxActive(dynamicDataSourceProperties.getMaxActive());
+            slaveDataSource.setInitialSize(dynamicDataSourceProperties.getInitialSize());
+            slaveDataSource.setMaxActive(dynamicDataSourceProperties.getMaxActive());
             slaveDataSource.setValidationQuery(dynamicDataSourceProperties.getValidationQuery());
             dataSources.put(slave.getDataSourceKey(), slaveDataSource);
             slaves.add(slave.getDataSourceKey());
