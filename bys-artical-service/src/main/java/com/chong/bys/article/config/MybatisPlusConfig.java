@@ -1,4 +1,4 @@
-package com.chong.bys.config;
+package com.chong.bys.article.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @author lichong
  */
 @Configuration
-@MapperScan("com.chong.bys.dao")
+@MapperScan("com.chong.bys.article.dao")
 public class MybatisPlusConfig {
 
     /**

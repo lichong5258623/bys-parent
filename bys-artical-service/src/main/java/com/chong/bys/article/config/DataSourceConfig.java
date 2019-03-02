@@ -1,7 +1,10 @@
-package com.chong.bys.config;
+package com.chong.bys.article.config;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.chong.bys.config.DbInfo;
+import com.chong.bys.config.DynamicDataSourceHolder;
+import com.chong.bys.config.DynamicDataSourceProperties;
 import com.chong.bys.exception.BysException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

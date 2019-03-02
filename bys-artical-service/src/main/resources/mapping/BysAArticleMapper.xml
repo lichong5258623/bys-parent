@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chong.bys.dao.BysAArticleMapper">
+<mapper namespace="com.chong.bys.article.dao.BysAArticleMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.chong.bys.domain.BysAArticle">
+	<resultMap id="BaseResultMap" type="com.chong.bys.article.domain.BysAArticle">
 		<id column="id" property="id" />
 		<result column="main_title" property="mainTitle" />
 		<result column="sub_heading" property="subHeading" />
@@ -13,5 +13,9 @@
 		<result column="author" property="author" />
 		<result column="reading_volume" property="readingVolume" />
 	</resultMap>
+	<select id="getByArticleId" resultType="com.chong.bys.article.domain.BysAArticle">
+		SELECT * FROM  bys_a_article WHERE  id = #{id,jdbcType=BIGINT}
+	</select>
+
 
 </mapper>

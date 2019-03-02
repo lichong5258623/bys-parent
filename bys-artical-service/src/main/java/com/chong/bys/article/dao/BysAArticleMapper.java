@@ -1,7 +1,9 @@
-package com.chong.bys.dao;
+package com.chong.bys.article.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.chong.bys.domain.BysAArticle;
+import com.chong.bys.article.domain.BysAArticle;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.chong.bys.domain.BysAArticle;
  */
 public interface BysAArticleMapper extends BaseMapper<BysAArticle> {
 
+     BysAArticle getByArticleId(Serializable id);
 }
