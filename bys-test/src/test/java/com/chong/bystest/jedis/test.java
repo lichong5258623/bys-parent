@@ -7,6 +7,7 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.Pipeline;
 
 import java.util.List;
 
@@ -106,7 +107,6 @@ public class test {
         jedis.setbit("user",1141L,true);
         jedis.setbit("user",1151L,true);
         jedis.setbit("user",11651L,true);
-
         Boolean user = jedis.getbit("user", 1121L);
         log.info(user+"");
         Boolean user2 = jedis.getbit("user", 1121444L);
@@ -123,6 +123,18 @@ public class test {
     @Test
     public void testRDB(){
         jedis.bgsave();
+    }
+
+    @Test
+    public void testPipLine(){
+
+        Pipeline pipeline = jedis.pipelined();
+        pipeline.set("pipkey01","1");
+        pipeline.set("pipkey02","1");
+        pipeline.set("pipkey03","1");
+
+        pipeline.sync();
+
     }
 
 }
