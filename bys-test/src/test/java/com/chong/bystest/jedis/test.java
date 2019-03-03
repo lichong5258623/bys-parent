@@ -117,6 +117,10 @@ public class test {
     }
 
 
+    /**
+     * 异步备份成rdb
+     */
+    @Test
     public void testRDB(){
         jedis.bgsave();
     }
