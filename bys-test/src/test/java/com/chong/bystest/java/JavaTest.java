@@ -73,5 +73,10 @@ public class JavaTest {
         System.out.println(a.intValue());
     }
 
+    @Test
+    public void testLongMaxValue(){
+
+        System.out.println(Long.MAX_VALUE);
+    }
 
 }
