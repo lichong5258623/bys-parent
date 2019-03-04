@@ -2,6 +2,8 @@ package com.chong.bystest.java;
 
 import org.junit.Test;
 
+import java.lang.reflect.Field;
+
 /**
  * 功能说明：
  *
@@ -77,6 +79,19 @@ public class JavaTest {
     public void testLongMaxValue(){
 
         System.out.println(Long.MAX_VALUE);
+    }
+
+    @Test
+    public void testClassLoad() throws Exception {
+        Class<?> clazz = Class.forName("com.chong.bystest.java.User");
+        User user = (User)clazz.newInstance();
+
+        Field name = clazz.getDeclaredField("name");
+        Field id = clazz.getDeclaredField("id");
+        name.setAccessible(true);
+        name.set(user,"aaaaa" );
+        id.setAccessible(true);
+        System.out.println(user.getName());
     }
 
 }
