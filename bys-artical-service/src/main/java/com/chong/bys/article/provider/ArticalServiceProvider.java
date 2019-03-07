@@ -1,8 +1,8 @@
 package com.chong.bys.article.provider;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.chong.bys.artical.dto.ArticalDto;
-import com.chong.bys.artical.service.ArticalService;
+import com.chong.bys.artical.api.dto.ArticalDto;
+import com.chong.bys.artical.api.service.ArticalService;
 import com.chong.bys.article.domain.BysAArticle;
 import com.chong.bys.article.service.IBysAArticleService;
 import com.chong.bys.core.util.BeanUtil;

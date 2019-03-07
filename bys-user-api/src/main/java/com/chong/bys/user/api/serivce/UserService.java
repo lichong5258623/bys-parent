@@ -1,7 +1,7 @@
 package com.chong.bys.user.api.serivce;
 
-import com.chong.bys.user.api.pojo.AuthoritieDto;
-import com.chong.bys.user.api.pojo.UserDto;
+import com.chong.bys.user.api.dto.AuthoritieDto;
+import com.chong.bys.user.api.dto.UserDto;
 
 import java.util.List;
 

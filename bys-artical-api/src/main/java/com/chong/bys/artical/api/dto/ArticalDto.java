@@ -1,4 +1,4 @@
-package com.chong.bys.artical.dto;
+package com.chong.bys.artical.api.dto;
 
 import java.io.Serializable;
 import java.util.Date;

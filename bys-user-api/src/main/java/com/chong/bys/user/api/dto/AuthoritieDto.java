@@ -1,4 +1,4 @@
-package com.chong.bys.user.api.pojo;
+package com.chong.bys.user.api.dto;
 
 import java.util.Date;
 

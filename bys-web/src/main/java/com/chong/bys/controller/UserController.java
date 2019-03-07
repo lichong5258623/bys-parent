@@ -1,7 +1,7 @@
 package com.chong.bys.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.chong.bys.artical.service.ArticalService;
+import com.chong.bys.artical.api.service.ArticalService;
 import com.chong.bys.core.util.exception.BysException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

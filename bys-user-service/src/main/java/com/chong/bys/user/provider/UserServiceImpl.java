@@ -2,8 +2,8 @@ package com.chong.bys.user.provider;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chong.bys.user.api.pojo.AuthoritieDto;
-import com.chong.bys.user.api.pojo.UserDto;
+import com.chong.bys.user.api.dto.AuthoritieDto;
+import com.chong.bys.user.api.dto.UserDto;
 import com.chong.bys.user.api.serivce.UserService;
 import com.chong.bys.user.domain.SysAuthoritie;
 import com.chong.bys.user.domain.SysUser;
