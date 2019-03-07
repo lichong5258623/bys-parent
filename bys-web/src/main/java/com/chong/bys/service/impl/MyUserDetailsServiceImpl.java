@@ -7,7 +7,7 @@ import com.chong.bys.service.MyUserDetailsService;
 import com.chong.bys.user.api.pojo.AuthoritieDto;
 import com.chong.bys.user.api.pojo.UserDto;
 import com.chong.bys.user.api.serivce.UserService;
-import com.chong.bys.util.BeanUtil;
+import com.chong.bys.core.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

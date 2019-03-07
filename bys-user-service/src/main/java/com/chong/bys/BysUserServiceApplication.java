@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @EnableDubbo
 @SpringBootApplication
-public class BysArticalServiceApplication {
+public class BysUserServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BysArticalServiceApplication.class, args);
-        log.info("文章服务启动完毕......");
+        SpringApplication.run(BysUserServiceApplication.class, args);
+        log.info("用户服务启动完毕");
     }
 }

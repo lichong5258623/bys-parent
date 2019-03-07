@@ -1,4 +1,4 @@
-package com.chong.bys.article.config;
+package com.chong.bys.user.config;
 
 
 import com.alibaba.druid.pool.DruidDataSource;

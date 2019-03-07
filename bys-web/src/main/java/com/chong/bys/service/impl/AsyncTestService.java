@@ -1,6 +1,6 @@
 package com.chong.bys.service.impl;
 
-import com.chong.bys.util.RedisUtil;
+import com.chong.bys.core.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;

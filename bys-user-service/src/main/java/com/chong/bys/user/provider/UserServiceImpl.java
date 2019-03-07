@@ -9,7 +9,7 @@ import com.chong.bys.user.domain.SysAuthoritie;
 import com.chong.bys.user.domain.SysUser;
 import com.chong.bys.user.service.ISysAuthoritieService;
 import com.chong.bys.user.service.ISysUserService;
-import com.chong.bys.util.BeanUtil;
+import com.chong.bys.core.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
