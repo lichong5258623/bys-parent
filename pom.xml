@@ -32,6 +32,10 @@
         <!--用户模块-->
         <module>bys-user-api</module>
         <module>bys-user-service</module>
+        <!--评论模块-->
+        <module>bys-commentary-api</module>
+        <module>bys-commentary-service</module>
+
         <module>bys-test</module>
     </modules>
 

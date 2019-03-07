@@ -12,6 +12,6 @@ public class BysUserServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BysUserServiceApplication.class, args);
-        log.info("用户服务启动完毕");
+        log.info("用户服务启动完毕......");
     }
 }

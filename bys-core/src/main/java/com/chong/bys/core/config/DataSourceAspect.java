@@ -29,7 +29,7 @@ public class DataSourceAspect {
 
     private List<String> slaveMethodPattern = new ArrayList<String>();
 
-    private static final String[] defaultSlaveMethodStart = new String[]{ "query", "find", "get","load","select" };
+    private static final String[] defaultSlaveMethodStart = new String[]{ "query", "find", "get","load","select","count" };
 
     private String[] slaveMethodStart;
 
