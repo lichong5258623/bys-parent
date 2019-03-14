@@ -94,4 +94,13 @@ public class JavaTest {
         System.out.println(user.getName());
     }
 
+    @Test
+
+    public void test11(){
+
+        String aaa = "      good boys     ";
+
+        System.out.println(aaa.isBlank());
+    }
+
 }
