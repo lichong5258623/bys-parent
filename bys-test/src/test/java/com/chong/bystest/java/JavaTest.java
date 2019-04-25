@@ -100,7 +100,6 @@ public class JavaTest {
 
         String aaa = "      good boys     ";
 
-        System.out.println(aaa.isBlank());
     }
 
 }
